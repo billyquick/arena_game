@@ -1,16 +1,17 @@
-[gd_resource type="Resource" script_class="CharacterStats" load_steps=5 format=3 uid="uid://pypdbph7mtd6"]
+[gd_resource type="Resource" script_class="CharacterStats" load_steps=6 format=3 uid="uid://pypdbph7mtd6"]
 
 [ext_resource type="Resource" uid="uid://vdl6w3kc6pph" path="res://fireball.tres" id="1_1yf6h"]
 [ext_resource type="Script" path="res://character_stats.gd" id="1_do4lu"]
 [ext_resource type="Resource" uid="uid://bg665cit68fg7" path="res://fireblast.tres" id="2_0djot"]
 [ext_resource type="Resource" uid="uid://bdwgtxmkgry0y" path="res://destruction_passive.tres" id="3_d3qdv"]
+[ext_resource type="Texture2D" uid="uid://cvonxtfphlliv" path="res://burnportrait.png" id="4_tyvns"]
 
 [resource]
 script = ExtResource("1_do4lu")
-name = "default"
+name = "Goblin"
 max_health = 900
-health = 0
+health = 900
 abilities = [ExtResource("1_1yf6h"), ExtResource("2_0djot"), ExtResource("3_d3qdv")]
 buffs = []
 debuffs = []
-portrait = "D:/GodotProjects/burnportrait.png"
+portrait = ExtResource("4_tyvns")

@@ -120,10 +120,11 @@ size_flags_horizontal = 3
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Portrait" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PlayerTeam/PlayerCharacter1"]
+[node name="Portrait" type="TextureButton" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PlayerTeam/PlayerCharacter1"]
 custom_minimum_size = Vector2(192, 0)
 layout_mode = 2
-size_flags_horizontal = 3
+ignore_texture_size = true
+stretch_mode = 0
 
 [node name="Healthbar" type="ProgressBar" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PlayerTeam/PlayerCharacter1/Portrait"]
 layout_mode = 1
@@ -149,21 +150,6 @@ grow_vertical = 2
 text = "50/100"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="CharacterName" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PlayerTeam/PlayerCharacter1/Portrait"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -11.5
-offset_right = 20.0
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
-text = "Character"
 
 [node name="Ability1" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PlayerTeam/PlayerCharacter1"]
 layout_mode = 2
@@ -191,10 +177,11 @@ flat = true
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Portrait" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PlayerTeam/PlayerCharacter2"]
+[node name="Portrait" type="TextureButton" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PlayerTeam/PlayerCharacter2"]
 custom_minimum_size = Vector2(192, 0)
 layout_mode = 2
-size_flags_horizontal = 3
+ignore_texture_size = true
+stretch_mode = 0
 
 [node name="Healthbar" type="ProgressBar" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PlayerTeam/PlayerCharacter2/Portrait"]
 layout_mode = 1
@@ -205,6 +192,9 @@ anchor_bottom = 1.0
 offset_top = -27.0
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_styles/background = SubResource("StyleBoxFlat_0fdjh")
+theme_override_styles/fill = SubResource("StyleBoxFlat_vmcui")
+value = 50.0
 show_percentage = false
 
 [node name="HealthTracker" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PlayerTeam/PlayerCharacter2/Portrait/Healthbar"]
@@ -217,21 +207,6 @@ grow_vertical = 2
 text = "50/100"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="CharacterName" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PlayerTeam/PlayerCharacter2/Portrait"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -11.5
-offset_right = 20.0
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
-text = "Character"
 
 [node name="Ability1" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PlayerTeam/PlayerCharacter2"]
 layout_mode = 2
@@ -259,10 +234,11 @@ flat = true
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Portrait" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PlayerTeam/PlayerCharacter3"]
+[node name="Portrait" type="TextureButton" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PlayerTeam/PlayerCharacter3"]
 custom_minimum_size = Vector2(192, 0)
 layout_mode = 2
-size_flags_horizontal = 3
+ignore_texture_size = true
+stretch_mode = 0
 
 [node name="Healthbar" type="ProgressBar" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PlayerTeam/PlayerCharacter3/Portrait"]
 layout_mode = 1
@@ -273,6 +249,9 @@ anchor_bottom = 1.0
 offset_top = -27.0
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_styles/background = SubResource("StyleBoxFlat_0fdjh")
+theme_override_styles/fill = SubResource("StyleBoxFlat_vmcui")
+value = 50.0
 show_percentage = false
 
 [node name="HealthTracker" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PlayerTeam/PlayerCharacter3/Portrait/Healthbar"]
@@ -285,21 +264,6 @@ grow_vertical = 2
 text = "50/100"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="CharacterName" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PlayerTeam/PlayerCharacter3/Portrait"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -11.5
-offset_right = 20.0
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
-text = "Character"
 
 [node name="Ability1" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PlayerTeam/PlayerCharacter3"]
 layout_mode = 2

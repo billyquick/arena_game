@@ -6,6 +6,8 @@ class_name TeamManager
 var playerTeam: Array
 var opponentTeam: Array
 
+const Character = preload("res://goblin.tres")
+
 func _init():
 	playerTeam = []
 	opponentTeam = []
@@ -17,9 +19,11 @@ func addCharacterToOpponentTeam(character: Character):
 	opponentTeam.append(character)
 
 func setupTeams():
+	playerTeam = [Character, Character, Character]
+	
 	# Create characters, abilities, and add them to teams here
 	# Example:
-	var playerCharacter1 = Character.new("Burn", 900)
+	"""var playerCharacter1 = Character.new("Burn", 900)
 	var fireball = Ability.new("Fireball", 30, 10)
 	var fireblast = Ability.new("Fireblast", 50, 30)
 	var passive = Ability.new("Passive", 10, 0)
@@ -54,3 +58,4 @@ func setupTeams():
 	opponentCharacter.add_ability(returnToHive)
 	opponentCharacter.add_ability(hiveMind)
 	addCharacterToOpponentTeam(opponentCharacter)
+"""

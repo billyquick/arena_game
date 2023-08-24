@@ -8,4 +8,4 @@ class_name CharacterStats
 @export var buffs: Array = []
 @export var debuffs: Array = []
 
-@export_global_file("*.png") var portrait
+@export var portrait: Texture

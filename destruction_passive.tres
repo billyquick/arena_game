@@ -4,13 +4,16 @@
 
 [resource]
 script = ExtResource("1_hkgbf")
-ability_name = "Destruction"
-ability_cost = 0
-ability_cooldown = 0
-ability_damage = 20
-ability_attack_hits = 1
-ability_targets_friendly = true
-ability_is_passive = true
-ability_is_useable = true
-ability_applies_buff = false
-ability_icon = null
+name = "Destruction"
+description = ""
+cost = 0
+targets = 1
+cooldown = 0
+damage = 0
+attack_hits = 1
+targets_friendly = false
+targets_enemy = true
+is_passive = false
+is_useable = true
+applies_buff = false
+icon = null
