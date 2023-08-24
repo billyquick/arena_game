@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cvonxtfphlliv"
-path="res://.godot/imported/burnportrait.jpg-fbbf680610d5b44ec5606f067b953a9e.ctex"
+path="res://.godot/imported/burnportrait.png-4cbb37f473555d554e7e508657fec1e4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://burnportrait.jpg"
-dest_files=["res://.godot/imported/burnportrait.jpg-fbbf680610d5b44ec5606f067b953a9e.ctex"]
+source_file="res://burnportrait.png"
+dest_files=["res://.godot/imported/burnportrait.png-4cbb37f473555d554e7e508657fec1e4.ctex"]
 
 [params]
 
