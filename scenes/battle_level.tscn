@@ -1,0 +1,532 @@
+[gd_scene load_steps=5 format=3 uid="uid://dsihlvfka7ngv"]
+
+[ext_resource type="Texture2D" uid="uid://ch6pcmforeo5t" path="res://sprites/battleback1_0.png" id="1_eyqn6"]
+[ext_resource type="Script" path="res://battle2.gd" id="2_1h17y"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0fdjh"]
+bg_color = Color(0.670588, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vmcui"]
+bg_color = Color(0, 0.631373, 0.129412, 1)
+
+[node name="Battle_Level" type="TextureRect"]
+offset_right = 1152.0
+offset_bottom = 648.0
+texture = ExtResource("1_eyqn6")
+script = ExtResource("2_1h17y")
+metadata/_edit_horizontal_guides_ = [648.0]
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(384, 144)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="PlayerPortrait" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
+text = "Player Portrait"
+
+[node name="PlayerTeamResource" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/PlayerPortrait"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -23.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Resource"
+
+[node name="MainInfoPanel" type="Panel" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/MainInfoPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.5
+offset_top = -13.0
+offset_right = 60.5
+offset_bottom = 13.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Main info panel"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
+
+[node name="Settings" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Settings"
+
+[node name="EnemyPortrait" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Enemy Portrait"
+
+[node name="EnemyTeamResource" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/EnemyPortrait"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -23.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Resource"
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+
+[node name="PlayerTeam" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PlayerCharacter1" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PlayerTeam"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Portrait" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PlayerTeam/PlayerCharacter1"]
+custom_minimum_size = Vector2(192, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Healthbar" type="ProgressBar" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PlayerTeam/PlayerCharacter1/Portrait"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -27.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/background = SubResource("StyleBoxFlat_0fdjh")
+theme_override_styles/fill = SubResource("StyleBoxFlat_vmcui")
+value = 50.0
+show_percentage = false
+
+[node name="HealthTracker" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PlayerTeam/PlayerCharacter1/Portrait/Healthbar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "50/100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CharacterName" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PlayerTeam/PlayerCharacter1/Portrait"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Character"
+
+[node name="Ability1" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PlayerTeam/PlayerCharacter1"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Ability 1"
+
+[node name="Ability2" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PlayerTeam/PlayerCharacter1"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Ability 2"
+
+[node name="Ability3" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PlayerTeam/PlayerCharacter1"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Ability 3"
+
+[node name="BuffDebuffs" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PlayerTeam/PlayerCharacter1"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Buffs/
+Debuffs"
+flat = true
+
+[node name="PlayerCharacter2" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PlayerTeam"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Portrait" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PlayerTeam/PlayerCharacter2"]
+custom_minimum_size = Vector2(192, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Healthbar" type="ProgressBar" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PlayerTeam/PlayerCharacter2/Portrait"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -27.0
+grow_horizontal = 2
+grow_vertical = 0
+show_percentage = false
+
+[node name="HealthTracker" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PlayerTeam/PlayerCharacter2/Portrait/Healthbar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "50/100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CharacterName" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PlayerTeam/PlayerCharacter2/Portrait"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Character"
+
+[node name="Ability1" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PlayerTeam/PlayerCharacter2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Ability 1"
+
+[node name="Ability2" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PlayerTeam/PlayerCharacter2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Ability 2"
+
+[node name="Ability3" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PlayerTeam/PlayerCharacter2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Ability 3"
+
+[node name="BuffDebuffs" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PlayerTeam/PlayerCharacter2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Buffs/
+Debuffs"
+flat = true
+
+[node name="PlayerCharacter3" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PlayerTeam"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Portrait" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PlayerTeam/PlayerCharacter3"]
+custom_minimum_size = Vector2(192, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Healthbar" type="ProgressBar" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PlayerTeam/PlayerCharacter3/Portrait"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -27.0
+grow_horizontal = 2
+grow_vertical = 0
+show_percentage = false
+
+[node name="HealthTracker" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PlayerTeam/PlayerCharacter3/Portrait/Healthbar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "50/100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CharacterName" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PlayerTeam/PlayerCharacter3/Portrait"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Character"
+
+[node name="Ability1" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PlayerTeam/PlayerCharacter3"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Ability 1"
+
+[node name="Ability2" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PlayerTeam/PlayerCharacter3"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Ability 2"
+
+[node name="Ability3" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PlayerTeam/PlayerCharacter3"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Ability 3"
+
+[node name="BuffDebuffs" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PlayerTeam/PlayerCharacter3"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Buffs/
+Debuffs"
+flat = true
+
+[node name="EnemyTeam" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="EnemyCharacter1" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="BuffDebuffs" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam/EnemyCharacter1"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Buffs/
+Debuffs"
+flat = true
+
+[node name="Ability3" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam/EnemyCharacter1"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Ability 3"
+
+[node name="Ability2" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam/EnemyCharacter1"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Ability 2"
+
+[node name="Ability1" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam/EnemyCharacter1"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Ability 1"
+
+[node name="Portrait" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam/EnemyCharacter1"]
+custom_minimum_size = Vector2(192, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Healthbar" type="ProgressBar" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam/EnemyCharacter1/Portrait"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -27.0
+grow_horizontal = 2
+grow_vertical = 0
+show_percentage = false
+
+[node name="HealthTracker" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam/EnemyCharacter1/Portrait/Healthbar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "50/100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EnemyName" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam/EnemyCharacter1/Portrait"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Enemy"
+
+[node name="EnemyCharacter2" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="BuffDebuffs" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam/EnemyCharacter2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Buffs/
+Debuffs"
+flat = true
+
+[node name="Ability3" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam/EnemyCharacter2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Ability 3"
+
+[node name="Ability2" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam/EnemyCharacter2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Ability 2"
+
+[node name="Ability1" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam/EnemyCharacter2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Ability 1"
+
+[node name="Portrait" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam/EnemyCharacter2"]
+custom_minimum_size = Vector2(192, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Healthbar" type="ProgressBar" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam/EnemyCharacter2/Portrait"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -27.0
+grow_horizontal = 2
+grow_vertical = 0
+show_percentage = false
+
+[node name="HealthTracker" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam/EnemyCharacter2/Portrait/Healthbar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "50/100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EnemyName" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam/EnemyCharacter2/Portrait"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Enemy"
+
+[node name="EnemyCharacter3" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="BuffDebuffs" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam/EnemyCharacter3"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Buffs/
+Debuffs"
+flat = true
+
+[node name="Ability3" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam/EnemyCharacter3"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Ability 3"
+
+[node name="Ability2" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam/EnemyCharacter3"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Ability 2"
+
+[node name="Ability1" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam/EnemyCharacter3"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Ability 1"
+
+[node name="Portrait" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam/EnemyCharacter3"]
+custom_minimum_size = Vector2(192, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Healthbar" type="ProgressBar" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam/EnemyCharacter3/Portrait"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -27.0
+grow_horizontal = 2
+grow_vertical = 0
+show_percentage = false
+
+[node name="HealthTracker" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam/EnemyCharacter3/Portrait/Healthbar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "50/100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EnemyName" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam/EnemyCharacter3/Portrait"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Enemy"

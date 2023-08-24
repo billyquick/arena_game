@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="CharacterAbilities" load_steps=2 format=3 uid="uid://bdwgtxmkgry0y"]
+
+[ext_resource type="Script" path="res://character_abilities.gd" id="1_hkgbf"]
+
+[resource]
+script = ExtResource("1_hkgbf")
+ability_name = "Destruction"
+ability_cost = 0
+ability_cooldown = 0
+ability_damage = 20
+ability_attack_hits = 1
+ability_targets_friendly = true
+ability_is_passive = true
+ability_is_useable = true
+ability_applies_buff = false
+ability_icon = null

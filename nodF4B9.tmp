@@ -1,0 +1,316 @@
+[gd_scene load_steps=6 format=3 uid="uid://clilp2q4iu80o"]
+
+[ext_resource type="Script" path="res://Battle.gd" id="1_of2is"]
+[ext_resource type="Texture2D" uid="uid://ch6pcmforeo5t" path="res://sprites/battleback1_0.png" id="2_hrbxs"]
+[ext_resource type="Script" path="res://char1_ability1.gd" id="2_krgck"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_enipx"]
+content_margin_top = 4.0
+bg_color = Color(0, 0, 0, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_faasn"]
+bg_color = Color(0, 0, 0, 0.52549)
+
+[node name="Battle" type="Node2D"]
+script = ExtResource("1_of2is")
+
+[node name="Background" type="TextureRect" parent="."]
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 1168.0
+offset_bottom = 664.0
+texture = ExtResource("2_hrbxs")
+
+[node name="playerPortrait" type="Button" parent="."]
+offset_left = 8.0
+offset_top = 5.0
+offset_right = 240.0
+offset_bottom = 128.0
+text = "Player Portrait
+
+
+
+Team Energy"
+
+[node name="enemyPortrait" type="Button" parent="."]
+offset_left = 936.0
+offset_top = 40.0
+offset_right = 1144.0
+offset_bottom = 128.0
+text = "Enemy Name
+
+Team Energy"
+
+[node name="settings" type="Button" parent="."]
+offset_left = 936.0
+offset_top = 8.0
+offset_right = 1144.0
+offset_bottom = 40.0
+text = "Settings"
+
+[node name="playerChar2" type="Button" parent="."]
+offset_top = 312.0
+offset_right = 192.0
+offset_bottom = 472.0
+text = "Character
+Portrait"
+
+[node name="ability1" type="Button" parent="playerChar2"]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 56.0
+offset_right = 288.0
+offset_bottom = 160.0
+text = "Ability 1"
+
+[node name="ability2" type="Button" parent="playerChar2"]
+layout_mode = 0
+offset_left = 288.0
+offset_top = 56.0
+offset_right = 384.0
+offset_bottom = 160.0
+text = "Ability 2"
+
+[node name="ability3" type="Button" parent="playerChar2"]
+layout_mode = 0
+offset_left = 384.0
+offset_top = 56.0
+offset_right = 480.0
+offset_bottom = 160.0
+text = "Ability 3"
+
+[node name="health" type="Button" parent="playerChar2"]
+layout_mode = 0
+offset_left = 192.0
+offset_right = 568.0
+offset_bottom = 56.0
+text = "health / resource"
+
+[node name="playerChar3" type="Button" parent="."]
+offset_top = 488.0
+offset_right = 192.0
+offset_bottom = 648.0
+text = "Character
+Portrait"
+
+[node name="ability1" type="Button" parent="playerChar3"]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 56.0
+offset_right = 288.0
+offset_bottom = 160.0
+text = "Ability 1"
+
+[node name="ability2" type="Button" parent="playerChar3"]
+layout_mode = 0
+offset_left = 288.0
+offset_top = 56.0
+offset_right = 384.0
+offset_bottom = 160.0
+text = "Ability 2"
+
+[node name="ability3" type="Button" parent="playerChar3"]
+layout_mode = 0
+offset_left = 384.0
+offset_top = 56.0
+offset_right = 480.0
+offset_bottom = 160.0
+text = "Ability 3"
+
+[node name="health" type="Button" parent="playerChar3"]
+layout_mode = 0
+offset_left = 192.0
+offset_right = 568.0
+offset_bottom = 56.0
+text = "health / resource"
+
+[node name="enemyChar1" type="Button" parent="."]
+offset_left = 960.0
+offset_top = 136.0
+offset_right = 1152.0
+offset_bottom = 296.0
+text = "Character
+Portrait"
+
+[node name="ability1" type="Button" parent="enemyChar1"]
+layout_mode = 0
+offset_left = -288.0
+offset_top = 56.0
+offset_right = -192.0
+offset_bottom = 160.0
+text = "Ability 1"
+
+[node name="ability2" type="Button" parent="enemyChar1"]
+layout_mode = 0
+offset_left = -192.0
+offset_top = 56.0
+offset_right = -96.0
+offset_bottom = 160.0
+text = "Ability 2"
+
+[node name="ability3" type="Button" parent="enemyChar1"]
+layout_mode = 0
+offset_left = -96.0
+offset_top = 56.0
+offset_bottom = 160.0
+text = "Ability 3"
+
+[node name="health" type="Button" parent="enemyChar1"]
+layout_mode = 0
+offset_left = -376.0
+offset_bottom = 56.0
+text = "health / resource"
+
+[node name="enemyChar2" type="Button" parent="."]
+offset_left = 960.0
+offset_top = 312.0
+offset_right = 1152.0
+offset_bottom = 472.0
+text = "Character
+Portrait"
+
+[node name="ability1" type="Button" parent="enemyChar2"]
+layout_mode = 0
+offset_left = -96.0
+offset_top = 56.0
+offset_bottom = 160.0
+text = "Ability 3"
+
+[node name="ability2" type="Button" parent="enemyChar2"]
+layout_mode = 0
+offset_left = -288.0
+offset_top = 56.0
+offset_right = -192.0
+offset_bottom = 160.0
+text = "Ability 1"
+
+[node name="ability3" type="Button" parent="enemyChar2"]
+layout_mode = 0
+offset_left = -192.0
+offset_top = 56.0
+offset_right = -96.0
+offset_bottom = 160.0
+text = "Ability 2"
+
+[node name="health" type="Button" parent="enemyChar2"]
+layout_mode = 0
+offset_left = -376.0
+offset_bottom = 56.0
+text = "health / resource"
+
+[node name="enemyChar3" type="Button" parent="."]
+offset_left = 960.0
+offset_top = 488.0
+offset_right = 1152.0
+offset_bottom = 648.0
+text = "Character
+Portrait"
+
+[node name="ability1" type="Button" parent="enemyChar3"]
+layout_mode = 0
+offset_left = -288.0
+offset_top = 56.0
+offset_right = -192.0
+offset_bottom = 160.0
+text = "Ability 1"
+
+[node name="ability2" type="Button" parent="enemyChar3"]
+layout_mode = 0
+offset_left = -192.0
+offset_top = 56.0
+offset_right = -96.0
+offset_bottom = 160.0
+text = "Ability 2"
+
+[node name="ability3" type="Button" parent="enemyChar3"]
+layout_mode = 0
+offset_left = -96.0
+offset_top = 56.0
+offset_bottom = 160.0
+text = "Ability 3"
+
+[node name="health" type="Button" parent="enemyChar3"]
+layout_mode = 0
+offset_left = -376.0
+offset_bottom = 56.0
+text = "health / resource"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+offset_top = 136.0
+offset_right = 568.0
+offset_bottom = 304.0
+
+[node name="playerChar1Container" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_top = 128.0
+offset_right = 576.0
+offset_bottom = 312.0
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="playerChar1Container"]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 184.0
+offset_bottom = 176.0
+theme_override_constants/separation = 0
+
+[node name="playerChar1Portrait" type="Button" parent="playerChar1Container/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+action_mode = 0
+text = "Character
+Portrait"
+icon_alignment = 1
+expand_icon = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="playerChar1Container"]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 64.0
+offset_right = 480.0
+offset_bottom = 176.0
+
+[node name="char1_ability1" type="Button" parent="playerChar1Container/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Ability 1"
+script = ExtResource("2_krgck")
+
+[node name="char1_ability2" type="Button" parent="playerChar1Container/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Ability 2"
+
+[node name="char1_ability3" type="Button" parent="playerChar1Container/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Ability 3"
+
+[node name="health" type="ProgressBar" parent="playerChar1Container"]
+layout_mode = 2
+offset_left = 192.0
+offset_top = 8.0
+offset_right = 568.0
+offset_bottom = 56.0
+size_flags_vertical = 1
+show_percentage = false
+
+[node name="Label" type="Label" parent="playerChar1Container/health"]
+offset_left = 160.0
+offset_top = 8.0
+offset_right = 222.0
+offset_bottom = 34.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_enipx")
+text = "450/900
+"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 248.0
+offset_top = 8.0
+offset_right = 928.0
+offset_bottom = 128.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_faasn")
+text = "Main Info Panel"
+
+[connection signal="pressed" from="playerChar2" to="." method="_on_player_char_2_pressed"]
+[connection signal="pressed" from="playerChar1Container/HBoxContainer/char1_ability1" to="." method="_on_char_1_ability_1_pressed"]
