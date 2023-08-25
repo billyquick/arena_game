@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_hkgbf")
-name = "Destruction"
+name = "Passive"
 description = ""
 cost = 0
 targets = 1
@@ -13,7 +13,7 @@ damage = 0
 attack_hits = 1
 targets_friendly = false
 targets_enemy = true
-is_passive = false
+is_passive = true
 is_useable = true
 applies_buff = false
 icon = null

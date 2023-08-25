@@ -14,4 +14,5 @@ health = 900
 abilities = [ExtResource("1_1yf6h"), ExtResource("2_0djot"), ExtResource("3_d3qdv")]
 buffs = []
 debuffs = []
+is_portrait_oriented_left = true
 portrait = ExtResource("4_tyvns")

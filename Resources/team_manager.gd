@@ -20,6 +20,7 @@ func addCharacterToOpponentTeam(character: Character):
 
 func setupTeams():
 	playerTeam = [Character, Character, Character]
+	opponentTeam = [Character, Character, Character]
 	
 	# Create characters, abilities, and add them to teams here
 	# Example:
