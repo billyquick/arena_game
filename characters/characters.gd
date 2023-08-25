@@ -8,13 +8,15 @@ var health: int
 var max_health: int
 var abilities: Array
 var teamResource: TeamResource
+var portrait: Texture
 
 # Constructor
-func _init(name: String, max_health: int):
-	self.name = name
-	self.max_health = max_health
-	self.health = max_health
-	self.abilities = []
+func _init(character: Resource):
+	self.name = character.name
+	self.max_health = character.max_health
+	self.health = character.max_health
+	self.abilities = character.abilities
+	self.portrait = character.portrait
 
 func add_ability(ability: Ability):
 	abilities.append(ability)

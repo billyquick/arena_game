@@ -24,10 +24,10 @@ func _ready():
 	var enemyTeamUI = $MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam
 	
 	for character in teamManager.playerTeam:
-		print("Player character: ", character.name, " with Abilities: ", character.abilities)
+		print("Player character: ", character, " with Abilities: ", character.abilities)
 
 	for character in teamManager.opponentTeam:
-		print("Opponent character: ", character.name, " with Abilities: ", character.abilities)
+		print("Opponent character: ", character, " with Abilities: ", character.abilities)
 		
 	updateTeamUI(playerTeamUI, teamManager.playerTeam)
 	updateTeamUI(enemyTeamUI, teamManager.opponentTeam)
@@ -71,12 +71,7 @@ func updateHealth(health_bar, Character):
 # Update Portrait for the character
 func assignCharacter(char_portrait, Character):
 	# wanted to make a function that would rotate the portrait 
-	if Character in teamManager.playerTeam:
-		if Character.is_portrait_oriented_left:
-			char_portrait.set_texture_normal(Character.portrait)
-			char_portrait.flip_h = true
-	else:
-		char_portrait.set_texture_normal(Character.portrait)
+	char_portrait.set_texture_normal(Character.portrait)
 	
 # assign UI to Ability buttons
 func assignAbilities(char_ability, Character):

@@ -9,4 +9,4 @@ class_name CharacterStats
 @export var debuffs: Array = []
 
 @export var is_portrait_oriented_left: bool = true #useful to orient portraits facing each other. Polish feature
-@export var portrait: Texture
+@export var portrait: Texture = null
