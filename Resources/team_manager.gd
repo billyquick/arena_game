@@ -6,7 +6,7 @@ class_name TeamManager
 var playerTeam: Array
 var opponentTeam: Array
 
-const Character = preload("res://goblin.tres")
+const Character = preload("res://characters/goblin/goblin.tres")
 
 func _init():
 	playerTeam = []

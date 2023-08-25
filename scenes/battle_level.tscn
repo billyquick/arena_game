@@ -287,30 +287,9 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="EnemyCharacter1" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam"]
+layout_direction = 3
 layout_mode = 2
 size_flags_vertical = 3
-
-[node name="BuffDebuffs" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam/EnemyCharacter1"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Buffs/
-Debuffs"
-flat = true
-
-[node name="Ability3" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam/EnemyCharacter1"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Ability 3"
-
-[node name="Ability2" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam/EnemyCharacter1"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Ability 2"
-
-[node name="Ability1" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam/EnemyCharacter1"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Ability 1"
 
 [node name="Portrait" type="TextureButton" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam/EnemyCharacter1"]
 custom_minimum_size = Vector2(192, 0)
@@ -343,31 +322,32 @@ text = "50/100"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="EnemyCharacter2" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam"]
+[node name="Ability1" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam/EnemyCharacter1"]
 layout_mode = 2
-size_flags_vertical = 3
+size_flags_horizontal = 3
+text = "Ability 1"
 
-[node name="BuffDebuffs" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam/EnemyCharacter2"]
+[node name="Ability2" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam/EnemyCharacter1"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Ability 2"
+
+[node name="Ability3" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam/EnemyCharacter1"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Ability 3"
+
+[node name="BuffDebuffs" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam/EnemyCharacter1"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Buffs/
 Debuffs"
 flat = true
 
-[node name="Ability3" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam/EnemyCharacter2"]
+[node name="EnemyCharacter2" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam"]
+layout_direction = 3
 layout_mode = 2
-size_flags_horizontal = 3
-text = "Ability 3"
-
-[node name="Ability2" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam/EnemyCharacter2"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Ability 2"
-
-[node name="Ability1" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam/EnemyCharacter2"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Ability 1"
+size_flags_vertical = 3
 
 [node name="Portrait" type="TextureButton" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam/EnemyCharacter2"]
 custom_minimum_size = Vector2(192, 0)
@@ -400,31 +380,32 @@ text = "50/100"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="EnemyCharacter3" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam"]
+[node name="Ability1" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam/EnemyCharacter2"]
 layout_mode = 2
-size_flags_vertical = 3
+size_flags_horizontal = 3
+text = "Ability 1"
 
-[node name="BuffDebuffs" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam/EnemyCharacter3"]
+[node name="Ability2" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam/EnemyCharacter2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Ability 2"
+
+[node name="Ability3" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam/EnemyCharacter2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Ability 3"
+
+[node name="BuffDebuffs" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam/EnemyCharacter2"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Buffs/
 Debuffs"
 flat = true
 
-[node name="Ability3" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam/EnemyCharacter3"]
+[node name="EnemyCharacter3" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam"]
+layout_direction = 3
 layout_mode = 2
-size_flags_horizontal = 3
-text = "Ability 3"
-
-[node name="Ability2" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam/EnemyCharacter3"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Ability 2"
-
-[node name="Ability1" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam/EnemyCharacter3"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Ability 1"
+size_flags_vertical = 3
 
 [node name="Portrait" type="TextureButton" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam/EnemyCharacter3"]
 custom_minimum_size = Vector2(192, 0)
@@ -456,6 +437,28 @@ grow_vertical = 2
 text = "50/100"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Ability1" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam/EnemyCharacter3"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Ability 1"
+
+[node name="Ability2" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam/EnemyCharacter3"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Ability 2"
+
+[node name="Ability3" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam/EnemyCharacter3"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Ability 3"
+
+[node name="BuffDebuffs" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam/EnemyCharacter3"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Buffs/
+Debuffs"
+flat = true
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PlayerTeam/PlayerCharacter1/Char1Ability1" to="." method="_on_char_1_ability_1_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PlayerTeam/PlayerCharacter1/Char1Ability2" to="." method="_on_char_1_ability_2_pressed"]
