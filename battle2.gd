@@ -3,6 +3,7 @@ extends TextureRect
 @onready var _player_character1 = get_node("MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PlayerTeam/PlayerCharacter1")
 @onready var _player_character2 = get_node("MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PlayerTeam/PlayerCharacter2")
 @onready var _player_character3 = get_node("MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PlayerTeam/PlayerCharacter3")
+@onready var _enemy_character1 = get_node("MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PlayerTeam/PlayerCharacter3/Portrait")
 
 var teamManager: TeamManager
 var teamResource: TeamResource
@@ -81,7 +82,7 @@ func assignCharacter(char_portrait, Character):
 func assignAbilities(char_ability, Character):
 	char_ability.text = Character.abilities[abilityCounter].name
 	if Character.abilities[abilityCounter].is_passive == true:
-		char_ability.disabled = true
+		char_ability.flat = true
 	
 	# Characters have a maximum of 3 abilities by design
 	# This will break if/when a character is designed without exactly 3 abilities
@@ -129,8 +130,7 @@ func processAbilities(node: Node, team):
 		# Check if the child has children and process them recursively
 		if child.get_child_count() > 0:
 			processAbilities(child, team)
-
-
+	
 func _on_char_1_ability_1_pressed():
 	# print(teamManager.playerTeam[0].abilities[0].description)
 	displayInfo(teamManager.playerTeam[0].abilities[0])
@@ -140,4 +140,9 @@ func _on_char_1_ability_1_pressed():
 
 func _on_char_1_ability_2_pressed():
 	displayInfo(teamManager.playerTeam[0].abilities[1])
+	pass # Replace with function body.
+
+
+func _on_char_1_ability_3_pressed():
+	displayInfo(teamManager.playerTeam[0].abilities[2])
 	pass # Replace with function body.

@@ -462,3 +462,4 @@ flat = true
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PlayerTeam/PlayerCharacter1/Char1Ability1" to="." method="_on_char_1_ability_1_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PlayerTeam/PlayerCharacter1/Char1Ability2" to="." method="_on_char_1_ability_2_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PlayerTeam/PlayerCharacter1/Char1Ability3" to="." method="_on_char_1_ability_3_pressed"]
