@@ -5,8 +5,8 @@
 [resource]
 script = ExtResource("1_d4vjs")
 name = "Fireball"
-description = null
-cost = 0
+description = "%s deals %d damage to %d target(s). Costs %d resource and has a cooldown of %d turns."
+cost = 10
 targets = 1
 cooldown = 0
 damage = 25
@@ -16,4 +16,4 @@ targets_enemy = true
 is_passive = false
 is_useable = true
 applies_buff = false
-ability_icon = null
+icon = null

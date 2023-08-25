@@ -1,7 +1,7 @@
 extends Node2D
 
-const Character = preload("res://characters/characters.gd")
-const Ability = preload("res://characters/abilities.gd")
+# const Character = preload("res://characters/characters.gd")
+# const Ability = preload("res://characters/abilities.gd")
 
 var teamManager: TeamManager
 var teamResource: TeamResource
