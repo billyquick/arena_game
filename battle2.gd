@@ -6,6 +6,7 @@ var teamResource: TeamResource
 var characterCounter = 0
 var abilityCounter = 0
 var validTargets
+var activeCharacter
 
 # We might be able to use this to halt execution until it is your turn
 signal turn_passed
@@ -43,12 +44,13 @@ func updateTeamUI(UIContainer, team):
 	processAbilities(UIContainer, team)
 	characterCounter = 0
 
-func executeAbility(character: Character, selectedAbility: Ability, target: Character):
+func executeAbility(character, selectedAbility, target):
 	if teamResource.consumeResource(selectedAbility.cost):
-		character.useAbility(selectedAbility, target)
-		print(character.name, " used ", selectedAbility.abilityName, " on ", target.name)
+		target.health -= selectedAbility.damage
+		print(character.name, " used ", selectedAbility.name, " on ", target.name)
+		print(target.name, "'s health is now ", target.health)
 	else:
-		print("Not enough team resource to use this ability!")
+		print("Not enough resource to use this ability!")
 
 func _on_TargetClicked(targetCharacter: Character):
 	# Determine which ability was being used (based on the ability selection process)
@@ -141,15 +143,19 @@ func _on_char_1_ability_1_pressed():
 	displayInfo(teamManager.playerTeam[0].abilities[0])
 	# highlight and return valid targets
 	validTargets = getValidTargets(teamManager.playerTeam[0].abilities[0])
+	activeCharacter = teamManager.playerTeam[0]
+	executeAbility(activeCharacter, teamManager.playerTeam[0].abilities[0], teamManager.opponentTeam[0])
 	print("ability's valid targets: ", validTargets)
 
 func _on_char_1_ability_2_pressed():
 	displayInfo(teamManager.playerTeam[0].abilities[1])
 	validTargets = getValidTargets(teamManager.playerTeam[0].abilities[1])
+	activeCharacter = teamManager.playerTeam[1]
 	print("ability's valid targets: ", validTargets)
 
 func _on_char_1_ability_3_pressed():
 	displayInfo(teamManager.playerTeam[0].abilities[2])
 	validTargets = getValidTargets(teamManager.playerTeam[0].abilities[2])
+	activeCharacter = teamManager.playerTeam[2]
 	print("ability's valid targets: ", validTargets)
 	
