@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="CharacterStats" load_steps=2 format=3 uid="uid://c2ttgwusk2s0s"]
+
+[ext_resource type="Script" path="res://character_stats.gd" id="1_3u6eh"]
+
+[resource]
+script = ExtResource("1_3u6eh")
+name = "Swarm"
+max_health = 1000
+health = 1000
+abilities = []
+buffs = []
+debuffs = []

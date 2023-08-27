@@ -16,4 +16,3 @@ targets_enemy = true
 is_passive = false
 is_useable = true
 applies_buff = false
-icon = null

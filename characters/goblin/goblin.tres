@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://character_stats.gd" id="1_do4lu"]
 [ext_resource type="Resource" uid="uid://bg665cit68fg7" path="res://characters/goblin/fireblast.tres" id="2_0djot"]
 [ext_resource type="Resource" uid="uid://bdwgtxmkgry0y" path="res://characters/goblin/destruction_passive.tres" id="3_d3qdv"]
-[ext_resource type="Texture2D" uid="uid://cvonxtfphlliv" path="res://burnportrait.png" id="4_tyvns"]
+[ext_resource type="Texture2D" uid="uid://cvonxtfphlliv" path="res://characters/goblin/burnportrait.png" id="4_tyvns"]
 
 [resource]
 script = ExtResource("1_do4lu")
@@ -14,5 +14,4 @@ health = 900
 abilities = [ExtResource("1_1yf6h"), ExtResource("2_0djot"), ExtResource("3_d3qdv")]
 buffs = []
 debuffs = []
-is_portrait_oriented_left = true
 portrait = ExtResource("4_tyvns")

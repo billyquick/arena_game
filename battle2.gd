@@ -1,27 +1,28 @@
 extends TextureRect
 
-@onready var _player_character1 = get_node("MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PlayerTeam/PlayerCharacter1")
-@onready var _player_character2 = get_node("MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PlayerTeam/PlayerCharacter2")
-@onready var _player_character3 = get_node("MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PlayerTeam/PlayerCharacter3")
-@onready var _enemy_character1 = get_node("MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PlayerTeam/PlayerCharacter3/Portrait")
-
 var teamManager: TeamManager
 var teamResource: TeamResource
 
 var characterCounter = 0
 var abilityCounter = 0
+var validTargets
 
 # We might be able to use this to halt execution until it is your turn
 signal turn_passed
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	teamResource = TeamResource.new(100)
+	teamResource = TeamResource.new(30)
 	teamManager = TeamManager.new()
 	teamManager.setupTeams()
 	
 	var playerTeamUI = $MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PlayerTeam
 	var enemyTeamUI = $MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam
+	
+	# get nodes to assign team resource
+	var playerTeamResource = $MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/PlayerPortrait/PlayerTeamResource
+	var enemyTeamResource = $MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/EnemyPortrait/EnemyTeamResource
+	playerTeamResource.text = "Resource: " + str(teamResource.currentResource) # assigns players resource
 	
 	for character in teamManager.playerTeam:
 		print("Player character: ", character, " with Abilities: ", character.abilities)
@@ -126,18 +127,43 @@ func processAbilities(node: Node, team):
 		if child.get_child_count() > 0:
 			processAbilities(child, team)
 	
+# called when an ability is pressed. Returns team(s) that contain valid targets
+func getValidTargets(ability):
+	if ability.targets_friendly and !ability.targets_enemy:
+		# polish: highlight friendly portraits
+		print(str(ability.targets_friendly))
+		return teamManager.playerTeam
+		pass
+	elif ability.targets_friendly and ability.targets_enemy:
+		# polish: highlight friendly and enemy portraits
+		return [teamManager.playerTeam, teamManager.opponentTeam]
+		pass
+	else: 
+		# polish: highlight enemy portraits
+		return teamManager.opponentTeam
+		pass
+	
 func _on_char_1_ability_1_pressed():
 	# print(teamManager.playerTeam[0].abilities[0].description)
 	displayInfo(teamManager.playerTeam[0].abilities[0])
-	# executeAbility(teamManager.playerTeam[0].abilities[0])
-	pass # Replace with function body.
+	# highlight and return valid targets
+	validTargets = getValidTargets(teamManager.playerTeam[0].abilities[0])
+	print("ability's valid targets: ", validTargets)
+	
 
+	# executeAbility(teamManager.playerTeam[0], teamManager.playerTeam[0].abilities[0], target)
+	pass # Replace with function body.
 
 func _on_char_1_ability_2_pressed():
 	displayInfo(teamManager.playerTeam[0].abilities[1])
+	validTargets = getValidTargets(teamManager.playerTeam[0].abilities[1])
+	print("ability's valid targets: ", validTargets)
 	pass # Replace with function body.
 
 
 func _on_char_1_ability_3_pressed():
 	displayInfo(teamManager.playerTeam[0].abilities[2])
+	validTargets = getValidTargets(teamManager.playerTeam[0].abilities[2])
+	print("ability's valid targets: ", validTargets)
 	pass # Replace with function body.
+	
