@@ -42,8 +42,6 @@ func updateTeamUI(UIContainer, team):
 	characterCounter = 0
 	processAbilities(UIContainer, team)
 	characterCounter = 0
-		
-	pass
 
 func executeAbility(character: Character, selectedAbility: Ability, target: Character):
 	if teamResource.consumeResource(selectedAbility.cost):
@@ -88,7 +86,6 @@ func assignAbilities(char_ability, Character):
 		# Only start adding the next Char's abilities when we finish the previous
 		characterCounter += 1
 		abilityCounter = 0
-	pass
 	
 # update health bars for a character recursively
 func processProgressBars(node: Node, team):
@@ -131,17 +128,13 @@ func processAbilities(node: Node, team):
 func getValidTargets(ability):
 	if ability.targets_friendly and !ability.targets_enemy:
 		# polish: highlight friendly portraits
-		print(str(ability.targets_friendly))
 		return teamManager.playerTeam
-		pass
 	elif ability.targets_friendly and ability.targets_enemy:
 		# polish: highlight friendly and enemy portraits
 		return [teamManager.playerTeam, teamManager.opponentTeam]
-		pass
 	else: 
 		# polish: highlight enemy portraits
 		return teamManager.opponentTeam
-		pass
 	
 func _on_char_1_ability_1_pressed():
 	# print(teamManager.playerTeam[0].abilities[0].description)
@@ -149,21 +142,14 @@ func _on_char_1_ability_1_pressed():
 	# highlight and return valid targets
 	validTargets = getValidTargets(teamManager.playerTeam[0].abilities[0])
 	print("ability's valid targets: ", validTargets)
-	
-
-	# executeAbility(teamManager.playerTeam[0], teamManager.playerTeam[0].abilities[0], target)
-	pass # Replace with function body.
 
 func _on_char_1_ability_2_pressed():
 	displayInfo(teamManager.playerTeam[0].abilities[1])
 	validTargets = getValidTargets(teamManager.playerTeam[0].abilities[1])
 	print("ability's valid targets: ", validTargets)
-	pass # Replace with function body.
-
 
 func _on_char_1_ability_3_pressed():
 	displayInfo(teamManager.playerTeam[0].abilities[2])
 	validTargets = getValidTargets(teamManager.playerTeam[0].abilities[2])
 	print("ability's valid targets: ", validTargets)
-	pass # Replace with function body.
 	
