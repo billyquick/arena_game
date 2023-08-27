@@ -27,6 +27,3 @@ func useAbility(selected_ability: Ability, target: Character):
 	else:
 		print("Not enough team resource to use this ability!")
 
-
-func _on_pressed():
-	pass # Replace with function body.
