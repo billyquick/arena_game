@@ -8,6 +8,8 @@ var abilityCounter = 0
 var validTargets
 var activeCharacter
 
+@onready var enemyCharacter1Health = $MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam/EnemyCharacter1/Portrait/Healthbar
+
 # We might be able to use this to halt execution until it is your turn
 signal turn_passed
 
@@ -47,6 +49,7 @@ func updateTeamUI(UIContainer, team):
 func executeAbility(character, selectedAbility, target):
 	if teamResource.consumeResource(selectedAbility.cost):
 		target.health -= selectedAbility.damage
+		updateHealth(enemyCharacter1Health, target)
 		print(character.name, " used ", selectedAbility.name, " on ", target.name)
 		print(target.name, "'s health is now ", target.health)
 	else:
@@ -143,7 +146,9 @@ func _on_char_1_ability_1_pressed():
 	displayInfo(teamManager.playerTeam[0].abilities[0])
 	# highlight and return valid targets
 	validTargets = getValidTargets(teamManager.playerTeam[0].abilities[0])
+	# assign active Character to the character's ability we selected
 	activeCharacter = teamManager.playerTeam[0]
+	# need to find a target
 	executeAbility(activeCharacter, teamManager.playerTeam[0].abilities[0], teamManager.opponentTeam[0])
 	print("ability's valid targets: ", validTargets)
 
