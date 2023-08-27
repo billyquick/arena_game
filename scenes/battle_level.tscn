@@ -172,13 +172,13 @@ flat = true
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Portrait" type="TextureButton" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PlayerTeam/PlayerCharacter2"]
+[node name="Char1Portrait" type="TextureButton" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PlayerTeam/PlayerCharacter2"]
 custom_minimum_size = Vector2(192, 0)
 layout_mode = 2
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="Healthbar" type="ProgressBar" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PlayerTeam/PlayerCharacter2/Portrait"]
+[node name="Healthbar" type="ProgressBar" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PlayerTeam/PlayerCharacter2/Char1Portrait"]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -192,7 +192,7 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_vmcui")
 value = 50.0
 show_percentage = false
 
-[node name="HealthTracker" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PlayerTeam/PlayerCharacter2/Portrait/Healthbar"]
+[node name="HealthTracker" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PlayerTeam/PlayerCharacter2/Char1Portrait/Healthbar"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -291,13 +291,13 @@ layout_direction = 3
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Portrait" type="TextureButton" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam/EnemyCharacter1"]
+[node name="EnemyPortrait1" type="TextureButton" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam/EnemyCharacter1"]
 custom_minimum_size = Vector2(192, 0)
 layout_mode = 2
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="Healthbar" type="ProgressBar" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam/EnemyCharacter1/Portrait"]
+[node name="Healthbar" type="ProgressBar" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam/EnemyCharacter1/EnemyPortrait1"]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -311,7 +311,7 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_vmcui")
 value = 50.0
 show_percentage = false
 
-[node name="HealthTracker" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam/EnemyCharacter1/Portrait/Healthbar"]
+[node name="HealthTracker" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam/EnemyCharacter1/EnemyPortrait1/Healthbar"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -463,3 +463,5 @@ flat = true
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PlayerTeam/PlayerCharacter1/Char1Ability1" to="." method="_on_char_1_ability_1_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PlayerTeam/PlayerCharacter1/Char1Ability2" to="." method="_on_char_1_ability_2_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PlayerTeam/PlayerCharacter1/Char1Ability3" to="." method="_on_char_1_ability_3_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PlayerTeam/PlayerCharacter2/Char1Portrait" to="." method="_on_char_1_portrait_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam/EnemyCharacter1/EnemyPortrait1" to="." method="_on_enemy_portrait_1_pressed"]

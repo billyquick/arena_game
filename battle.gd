@@ -7,8 +7,9 @@ var characterCounter = 0
 var abilityCounter = 0
 var validTargets
 var activeCharacter
+var activeAbility
 
-@onready var enemyCharacter1Health = $MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam/EnemyCharacter1/Portrait/Healthbar
+@onready var enemyCharacter1Health = $MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam/EnemyCharacter1/EnemyPortrait1/Healthbar
 
 # We might be able to use this to halt execution until it is your turn
 signal turn_passed
@@ -47,13 +48,15 @@ func updateTeamUI(UIContainer, team):
 	characterCounter = 0
 
 func executeAbility(character, selectedAbility, target):
-	if teamResource.consumeResource(selectedAbility.cost):
+	if teamResource.consumeResource(selectedAbility.cost) and !selectedAbility.is_passive:
 		target.health -= selectedAbility.damage
 		updateHealth(enemyCharacter1Health, target)
 		print(character.name, " used ", selectedAbility.name, " on ", target.name)
 		print(target.name, "'s health is now ", target.health)
+		activeCharacter = null
+		activeAbility = null
 	else:
-		print("Not enough resource to use this ability!")
+		print("Not enough resource to use this ability or passive is selected!")
 
 func _on_TargetClicked(targetCharacter: Character):
 	# Determine which ability was being used (based on the ability selection process)
@@ -140,6 +143,12 @@ func getValidTargets(ability):
 	else: 
 		# polish: highlight enemy portraits
 		return teamManager.opponentTeam
+
+func isValidTarget(target):
+	if target in validTargets:
+		return true
+	else:
+		return false
 	
 func _on_char_1_ability_1_pressed():
 	# print(teamManager.playerTeam[0].abilities[0].description)
@@ -148,19 +157,36 @@ func _on_char_1_ability_1_pressed():
 	validTargets = getValidTargets(teamManager.playerTeam[0].abilities[0])
 	# assign active Character to the character's ability we selected
 	activeCharacter = teamManager.playerTeam[0]
-	# need to find a target
-	executeAbility(activeCharacter, teamManager.playerTeam[0].abilities[0], teamManager.opponentTeam[0])
-	print("ability's valid targets: ", validTargets)
+	activeAbility = teamManager.playerTeam[0].abilities[0]
+	# need to set target based on target clicked
+	
+	print(teamManager.playerTeam[0].abilities[0].name, " can target: ", validTargets)
 
 func _on_char_1_ability_2_pressed():
 	displayInfo(teamManager.playerTeam[0].abilities[1])
 	validTargets = getValidTargets(teamManager.playerTeam[0].abilities[1])
 	activeCharacter = teamManager.playerTeam[1]
-	print("ability's valid targets: ", validTargets)
+	activeAbility = teamManager.playerTeam[0].abilities[1]
+	print(teamManager.playerTeam[0].abilities[1].name, " can target: ", validTargets)
 
 func _on_char_1_ability_3_pressed():
 	displayInfo(teamManager.playerTeam[0].abilities[2])
 	validTargets = getValidTargets(teamManager.playerTeam[0].abilities[2])
 	activeCharacter = teamManager.playerTeam[2]
-	print("ability's valid targets: ", validTargets)
+	activeAbility = teamManager.playerTeam[0].abilities[2]
+	print(teamManager.playerTeam[0].abilities[2].name, " can target: ", validTargets)
 	
+# clicking a portrait should probably set a target
+func _on_enemy_portrait_1_pressed():
+	if activeCharacter != null and isValidTarget(teamManager.opponentTeam[0]):
+		executeAbility(activeCharacter, activeAbility, teamManager.opponentTeam[0])
+	else:
+		print("No active character")
+	pass
+
+
+func _on_char_1_portrait_pressed():
+	if activeCharacter != null and isValidTarget(teamManager.playerTeam[1]):
+		executeAbility(activeCharacter, activeAbility, teamManager.playerTeam[1])
+	else:
+		print("No active character or invalid target!")
