@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dsihlvfka7ngv"]
 
 [ext_resource type="Texture2D" uid="uid://ch6pcmforeo5t" path="res://sprites/battleback1_0.png" id="1_eyqn6"]
-[ext_resource type="Script" path="res://battle2.gd" id="2_1h17y"]
+[ext_resource type="Script" path="res://battle.gd" id="2_wd3nu"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0fdjh"]
 bg_color = Color(0.670588, 0, 0, 1)
@@ -13,7 +13,7 @@ bg_color = Color(0, 0.631373, 0.129412, 1)
 offset_right = 1152.0
 offset_bottom = 648.0
 texture = ExtResource("1_eyqn6")
-script = ExtResource("2_1h17y")
+script = ExtResource("2_wd3nu")
 metadata/_edit_horizontal_guides_ = [648.0]
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
