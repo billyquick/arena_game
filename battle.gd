@@ -9,6 +9,7 @@ var abilityCounter = 0
 var validTargets
 var activeCharacter
 var activeAbility
+var turnTracker: Array
 
 @onready var enemyCharacter1Health = $MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam/EnemyCharacter1/Enemy1Portrait/Healthbar
 @onready var enemyCharacter2Health = $MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam/EnemyCharacter2/Enemy2Portrait/Healthbar
@@ -43,7 +44,9 @@ func _ready():
 		
 	updateTeamUI(playerTeamUI, teamManager.playerTeam)
 	updateTeamUI(enemyTeamUI, teamManager.opponentTeam)
-		
+	
+	# can use to count number of total turns and each players turns
+	turnTracker.append("playerTurn")
 
 func updateTeamUI(UIContainer, team):
 	# all of the process functions here are only using teamManager.playerTeam - need to fix this
@@ -283,3 +286,12 @@ func _on_enemy_3_portrait_pressed():
 		executeAbility(activeCharacter, activeAbility, teamManager.opponentTeam[2], enemyCharacter3Health)
 	else:
 		print("No active character")
+
+# What to do when the turn ends
+func _on_player_portrait_pressed():
+	# if it's the player's turn, make it the enemy's turn
+	if turnTracker.back() == "playerTurn":
+		turnTracker.append("enemyTurn")
+		print(turnTracker)
+	else:
+		pass

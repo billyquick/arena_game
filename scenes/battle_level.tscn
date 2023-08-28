@@ -552,6 +552,7 @@ text = "Buffs/
 Debuffs"
 flat = true
 
+[connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/PlayerPortrait" to="." method="_on_player_portrait_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PlayerTeam/PlayerCharacter1/Char1Portrait" to="." method="_on_char_1_portrait_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PlayerTeam/PlayerCharacter1/Char1Ability1" to="." method="_on_char_1_ability_1_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PlayerTeam/PlayerCharacter1/Char1Ability2" to="." method="_on_char_1_ability_2_pressed"]
