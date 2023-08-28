@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://dsihlvfka7ngv"]
+[gd_scene load_steps=8 format=3 uid="uid://dsihlvfka7ngv"]
 
 [ext_resource type="Texture2D" uid="uid://ch6pcmforeo5t" path="res://sprites/battleback1_0.png" id="1_eyqn6"]
 [ext_resource type="Script" path="res://battle.gd" id="2_wd3nu"]
@@ -8,6 +8,44 @@ bg_color = Color(0.670588, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vmcui"]
 bg_color = Color(0, 0.631373, 0.129412, 1)
+
+[sub_resource type="Animation" id="Animation_r563b"]
+resource_name = "valid_target"
+length = 1.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ig71k"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_t2ysc"]
+_data = {
+"RESET": SubResource("Animation_ig71k"),
+"valid_target": SubResource("Animation_r563b")
+}
 
 [node name="Battle_Level" type="TextureRect"]
 offset_right = 1152.0
@@ -322,6 +360,11 @@ text = "50/100"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam/EnemyCharacter1/Enemy1Portrait"]
+libraries = {
+"": SubResource("AnimationLibrary_t2ysc")
+}
+
 [node name="Enemy1Ability1" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam/EnemyCharacter1"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -380,6 +423,11 @@ text = "50/100"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam/EnemyCharacter2/Enemy2Portrait"]
+libraries = {
+"": SubResource("AnimationLibrary_t2ysc")
+}
+
 [node name="Enemy2Ability1" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam/EnemyCharacter2"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -437,6 +485,11 @@ grow_vertical = 2
 text = "50/100"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam/EnemyCharacter3/Enemy3Portrait"]
+libraries = {
+"": SubResource("AnimationLibrary_t2ysc")
+}
 
 [node name="Enemy3Ability1" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam/EnemyCharacter3"]
 layout_mode = 2

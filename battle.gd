@@ -143,12 +143,16 @@ func processAbilities(node: Node, team):
 func getValidTargets(ability):
 	if ability.targets_friendly and !ability.targets_enemy:
 		# polish: highlight friendly portraits
+		$MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam/EnemyCharacter1/Enemy1Portrait/AnimationPlayer.play("valid_target")
 		return teamManager.playerTeam
 	elif ability.targets_friendly and ability.targets_enemy:
 		# polish: highlight friendly and enemy portraits
 		return [teamManager.playerTeam, teamManager.opponentTeam]
 	else: 
 		# polish: highlight enemy portraits
+		$MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam/EnemyCharacter1/Enemy1Portrait/AnimationPlayer.play("valid_target")
+		$MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam/EnemyCharacter2/Enemy2Portrait/AnimationPlayer.play("valid_target")
+		$MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam/EnemyCharacter3/Enemy3Portrait/AnimationPlayer.play("valid_target")
 		return teamManager.opponentTeam
 
 func isValidTarget(target):
