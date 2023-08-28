@@ -41,7 +41,7 @@ layout_mode = 2
 [node name="PlayerPortrait" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(256, 0)
 layout_mode = 2
-text = "Player Portrait"
+text = "Click me to end turn"
 
 [node name="PlayerTeamResource" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/PlayerPortrait"]
 layout_mode = 1

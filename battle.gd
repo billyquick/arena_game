@@ -1,7 +1,8 @@
 extends TextureRect
 
 var teamManager: TeamManager
-var teamResource: TeamResource
+var playerResource: TeamResource
+var enemyResource: TeamResource
 
 var characterCounter = 0
 var abilityCounter = 0
@@ -23,14 +24,16 @@ signal turn_passed
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	teamResource = TeamResource.new(30)
+	playerResource = TeamResource.new(30)
+	enemyResource = TeamResource.new(40)
 	teamManager = TeamManager.new()
 	teamManager.setupTeams()
 	
 	var playerTeamUI = $MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PlayerTeam
 	var enemyTeamUI = $MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam
 	
-	playerTeamResource.text = "Resource: " + str(teamResource.currentResource) # assigns players resource
+	playerTeamResource.text = "Resource: " + str(playerResource.currentResource) # assigns players resource
+	enemyTeamResource.text = "Resource: " + str(enemyResource.currentResource) # assigns enemy resource
 	
 	for character in teamManager.playerTeam:
 		print("Player character: ", character, " with Abilities: ", character.abilities)
@@ -52,10 +55,12 @@ func updateTeamUI(UIContainer, team):
 	characterCounter = 0
 
 func updateResource():
-	playerTeamResource.text = "Resource: " + str(teamResource.currentResource)
+	#TODO: check whose turn it is 
+	playerTeamResource.text = "Resource: " + str(playerResource.currentResource)
 
 func executeAbility(character, selectedAbility, target, healthbar):
-	if teamResource.consumeResource(selectedAbility.cost) and !selectedAbility.is_passive:
+	# TODO: change player resource to check whose turn it is
+	if playerResource.consumeResource(selectedAbility.cost) and !selectedAbility.is_passive:
 		target.health -= selectedAbility.damage
 		updateHealth(healthbar, target) # TO DO
 		print(character.name, " used ", selectedAbility.name, " on ", target.name)
@@ -65,12 +70,6 @@ func executeAbility(character, selectedAbility, target, healthbar):
 		updateResource()
 	else:
 		print("Not enough resource to use this ability or passive is selected!")
-
-func _on_TargetClicked(targetCharacter: Character):
-	# Determine which ability was being used (based on the ability selection process)
-	# Call executeAbility with the appropriate arguments
-	# executeAbility(activeCharacter, selectedAbility, targetCharacter)
-	pass
 
 # Determine what information to show in the Info Panel
 func displayInfo(target):
@@ -250,13 +249,13 @@ func _on_enemy_portrait_1_pressed():
 		print("No active character")
 
 func _on_enemy_2_portrait_pressed():
-	if activeCharacter != null and isValidTarget(teamManager.opponentTeam[0]):
+	if activeCharacter != null and isValidTarget(teamManager.opponentTeam[1]):
 		executeAbility(activeCharacter, activeAbility, teamManager.opponentTeam[1], enemyCharacter2Health)
 	else:
 		print("No active character")
 
 func _on_enemy_3_portrait_pressed():
-	if activeCharacter != null and isValidTarget(teamManager.opponentTeam[0]):
+	if activeCharacter != null and isValidTarget(teamManager.opponentTeam[2]):
 		executeAbility(activeCharacter, activeAbility, teamManager.opponentTeam[2], enemyCharacter3Health)
 	else:
 		print("No active character")
