@@ -18,6 +18,9 @@ var activeAbility
 @onready var playerCharacter3Health = $MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PlayerTeam/PlayerCharacter3/Char3Portrait/Healthbar
 @onready var playerTeamResource = $MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/PlayerPortrait/PlayerTeamResource
 @onready var enemyTeamResource = $MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/EnemyPortrait/EnemyTeamResource
+@onready var playerTeamUI = $MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PlayerTeam
+@onready var enemyTeamUI = $MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam
+@onready var bothTeamUI = $MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer
 
 # We might be able to use this to halt execution until it is your turn
 signal turn_passed
@@ -28,9 +31,6 @@ func _ready():
 	enemyResource = TeamResource.new(40)
 	teamManager = TeamManager.new()
 	teamManager.setupTeams()
-	
-	var playerTeamUI = $MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PlayerTeam
-	var enemyTeamUI = $MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam
 	
 	playerTeamResource.text = "Resource: " + str(playerResource.currentResource) # assigns players resource
 	enemyTeamResource.text = "Resource: " + str(enemyResource.currentResource) # assigns enemy resource
@@ -68,6 +68,7 @@ func executeAbility(character, selectedAbility, target, healthbar):
 		activeCharacter = null
 		activeAbility = null
 		updateResource()
+		resetAnimations(bothTeamUI)
 	else:
 		print("Not enough resource to use this ability or passive is selected!")
 
@@ -141,12 +142,22 @@ func processAbilities(node: Node, team):
 	
 # called when an ability is pressed. Returns team(s) that contain valid targets
 func getValidTargets(ability):
+	resetAnimations(bothTeamUI)
 	if ability.targets_friendly and !ability.targets_enemy:
 		# polish: highlight friendly portraits
-		$MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam/EnemyCharacter1/Enemy1Portrait/AnimationPlayer.play("valid_target")
+		$MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PlayerTeam/PlayerCharacter1/Char1Portrait/AnimationPlayer.play("valid_target")
+		$MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PlayerTeam/PlayerCharacter2/Char2Portrait/AnimationPlayer.play("valid_target")
+		$MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PlayerTeam/PlayerCharacter3/Char3Portrait/AnimationPlayer.play("valid_target")
 		return teamManager.playerTeam
 	elif ability.targets_friendly and ability.targets_enemy:
 		# polish: highlight friendly and enemy portraits
+		$MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PlayerTeam/PlayerCharacter1/Char1Portrait/AnimationPlayer.play("valid_target")
+		$MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PlayerTeam/PlayerCharacter2/Char2Portrait/AnimationPlayer.play("valid_target")
+		$MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PlayerTeam/PlayerCharacter3/Char3Portrait/AnimationPlayer.play("valid_target")
+		
+		$MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam/EnemyCharacter1/Enemy1Portrait/AnimationPlayer.play("valid_target")
+		$MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam/EnemyCharacter2/Enemy2Portrait/AnimationPlayer.play("valid_target")
+		$MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam/EnemyCharacter3/Enemy3Portrait/AnimationPlayer.play("valid_target")
 		return [teamManager.playerTeam, teamManager.opponentTeam]
 	else: 
 		# polish: highlight enemy portraits
@@ -154,6 +165,15 @@ func getValidTargets(ability):
 		$MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam/EnemyCharacter2/Enemy2Portrait/AnimationPlayer.play("valid_target")
 		$MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam/EnemyCharacter3/Enemy3Portrait/AnimationPlayer.play("valid_target")
 		return teamManager.opponentTeam
+
+func resetAnimations(node: Node):
+	for child in node.get_children():
+		if child is AnimationPlayer:
+			var player = child as AnimationPlayer
+			player.play("RESET")
+		
+		if child.get_child_count() > 0:
+			resetAnimations(child)
 
 func isValidTarget(target):
 	if target in validTargets:
