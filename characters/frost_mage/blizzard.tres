@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="CharacterAbilities" load_steps=2 format=3 uid="uid://ce3khetn4fe4d"]
+
+[ext_resource type="Script" path="res://character_abilities.gd" id="1_clxue"]
+
+[resource]
+script = ExtResource("1_clxue")
+name = "Blizzard"
+description = "%s deals %d damage to %d target(s). Costs %d resource and has a cooldown of %d turns."
+cost = 30
+targets = 3
+cooldown = 2
+damage = 10
+attack_hits = 1
+targets_friendly = false
+targets_enemy = true
+is_passive = false
+is_useable = true
+applies_buff = true

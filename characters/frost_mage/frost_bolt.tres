@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="CharacterAbilities" load_steps=2 format=3 uid="uid://dctdx40nl8jhd"]
+
+[ext_resource type="Script" path="res://character_abilities.gd" id="1_dkbbw"]
+
+[resource]
+script = ExtResource("1_dkbbw")
+name = "Frost Bolt"
+description = "%s deals %d damage to %d target(s). Costs %d resource and has a cooldown of %d turns."
+cost = 10
+targets = 1
+cooldown = 1
+damage = 20
+attack_hits = 1
+targets_friendly = false
+targets_enemy = true
+is_passive = false
+is_useable = true
+applies_buff = true

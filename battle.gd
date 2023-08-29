@@ -66,8 +66,7 @@ func executeAbility(character, selectedAbility, target, healthbar):
 	if playerResource.consumeResource(selectedAbility.cost):
 		target.health -= selectedAbility.damage
 		updateHealth(healthbar, target) # TO DO
-		print(character.name, " used ", selectedAbility.name, " on ", target.name)
-		print(target.name, "'s health is now ", target.health)
+		print(character.name, " used ", selectedAbility.name, " on ", target.name, ". ", target.name, "'s health is now ", target.health)
 		activeCharacter = null
 		activeAbility = null
 		updateResource()
@@ -80,7 +79,6 @@ func executeAbility(character, selectedAbility, target, healthbar):
 # Determine what information to show in the Info Panel
 func displayInfo(target):
 	$MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/MainInfoPanel/Label.text = target.description % [target.name, target.damage, target.targets, target.cost, target.cooldown]
-	pass
 
 # Update health bars as the game begins
 func updateHealth(health_bar, Character):

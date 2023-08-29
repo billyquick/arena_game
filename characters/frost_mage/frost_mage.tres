@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="CharacterStats" load_steps=6 format=3 uid="uid://cnjcmxkud1ir7"]
+
+[ext_resource type="Resource" uid="uid://dctdx40nl8jhd" path="res://characters/frost_mage/frost_bolt.tres" id="1_c16px"]
+[ext_resource type="Script" path="res://character_stats.gd" id="1_xpyu0"]
+[ext_resource type="Resource" uid="uid://ce3khetn4fe4d" path="res://characters/frost_mage/blizzard.tres" id="2_gk4s0"]
+[ext_resource type="Resource" uid="uid://di35dps1q34xr" path="res://characters/frost_mage/cold_as_ice_passive.tres" id="3_xbr4b"]
+[ext_resource type="Texture2D" uid="uid://b3xodcurh3jnu" path="res://characters/frost_mage/frost_mage.png" id="4_cv068"]
+
+[resource]
+script = ExtResource("1_xpyu0")
+name = "Frost Mage"
+max_health = 1000
+health = 1000
+abilities = [ExtResource("1_c16px"), ExtResource("2_gk4s0"), ExtResource("3_xbr4b")]
+buffs = []
+debuffs = []
+portrait = ExtResource("4_cv068")

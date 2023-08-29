@@ -7,6 +7,7 @@ var playerTeam: Array
 var opponentTeam: Array
 
 const Goblin = preload("res://characters/goblin/goblin.tres")
+const FrostMage = preload("res://characters/frost_mage/frost_mage.tres")
 
 func _init():
 	playerTeam = []
@@ -20,7 +21,7 @@ func addCharacterToOpponentTeam(character: Character):
 
 func setupTeams():
 	var playerCharacter1 = Character.new(Goblin)
-	var playerCharacter2 = Character.new(Goblin)
+	var playerCharacter2 = Character.new(FrostMage)
 	var playerCharacter3 = Character.new(Goblin)
 	var enemyCharacter1 = Character.new(Goblin)
 	var enemyCharacter2 = Character.new(Goblin)
