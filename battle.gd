@@ -63,7 +63,7 @@ func updateResource():
 
 func executeAbility(character, selectedAbility, target, healthbar):
 	# TODO: change player resource to check whose turn it is
-	if playerResource.consumeResource(selectedAbility.cost) and !selectedAbility.is_passive:
+	if playerResource.consumeResource(selectedAbility.cost):
 		target.health -= selectedAbility.damage
 		updateHealth(healthbar, target) # TO DO
 		print(character.name, " used ", selectedAbility.name, " on ", target.name)
@@ -73,7 +73,9 @@ func executeAbility(character, selectedAbility, target, healthbar):
 		updateResource()
 		resetAnimations(bothTeamUI)
 	else:
-		print("Not enough resource to use this ability or passive is selected!")
+		# Flash resource red so it should be obvious why you can't use the ability
+		$MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/PlayerPortrait/PlayerTeamResource/AnimationPlayer.play("low_resource")
+		print("Not enough resource to use this ability")
 
 # Determine what information to show in the Info Panel
 func displayInfo(target):
