@@ -13,9 +13,9 @@ func _init(maxResource: int):
 func addResource(amount: int):
 	currentResource = min(currentResource + amount, maxResource)
 
-func consumeResource(amount: int) -> bool:
-	if currentResource >= amount:
-		currentResource -= amount
+func consumeResource(amount: int, modifier: int) -> bool:
+	if currentResource >= (amount + modifier):
+		currentResource -= (amount + modifier)
 		return true
 	return false
 

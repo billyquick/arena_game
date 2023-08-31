@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="CharacterAbilities" load_steps=2 format=3 uid="uid://ce3khetn4fe4d"]
+[gd_resource type="Resource" script_class="CharacterAbilities" load_steps=3 format=3 uid="uid://ce3khetn4fe4d"]
 
+[ext_resource type="Resource" uid="uid://dag1xrrekwlfh" path="res://characters/frost_mage/cold_as_ice_modifier.tres" id="1_8hu8h"]
 [ext_resource type="Script" path="res://character_abilities.gd" id="1_clxue"]
 
 [resource]
@@ -15,4 +16,5 @@ targets_friendly = false
 targets_enemy = true
 is_passive = false
 is_useable = true
-applies_buff = true
+applies_modifier = true
+modifiers = [ExtResource("1_8hu8h")]

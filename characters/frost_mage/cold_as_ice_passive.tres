@@ -15,4 +15,4 @@ targets_friendly = false
 targets_enemy = true
 is_passive = true
 is_useable = true
-applies_buff = false
+applies_buff = true

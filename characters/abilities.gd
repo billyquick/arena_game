@@ -13,7 +13,7 @@ var targets_friendly: bool
 var targets_enemy: bool
 var is_passive: bool 
 var is_useable: bool 
-var applies_buff: bool
+var applies_modifier: bool
 var icon: Texture
 
 # Constructor
@@ -29,5 +29,5 @@ func _init(ability: Resource):
 	self.targets_enemy = ability.targets_enemy
 	self.is_passive = ability.is_passive
 	self.is_useable = ability.is_useable
-	self.applies_buff = ability.applies_buff
+	self.applies_modifier = ability.applies_modifier
 	self.icon = ability.icon

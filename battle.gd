@@ -29,7 +29,7 @@ signal turn_passed
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	playerResource = TeamResource.new(30)
+	playerResource = TeamResource.new(100)
 	enemyResource = TeamResource.new(40)
 	teamManager = TeamManager.new()
 	teamManager.setupTeams()
@@ -64,10 +64,31 @@ func updateResource():
 
 func executeAbility(character, selectedAbility, target, healthbar):
 	# TODO: change player resource to check whose turn it is
-	if playerResource.consumeResource(selectedAbility.cost):
+	if playerResource.consumeResource(selectedAbility.cost, getCost(activeCharacter.modifiers)):
 		target.health -= selectedAbility.damage
 		updateHealth(healthbar, target) # TO DO
 		print(character.name, " used ", selectedAbility.name, " on ", target.name, ". ", target.name, "'s health is now ", target.health)
+		# apply modifiers
+		if selectedAbility.applies_modifier:
+			# for each modifier the ability applies, create a new one and apply it to the target
+			# TODO: if target already has an instance  theof modifier, should extend rather than create a new one
+			for uniqueModifier in selectedAbility.modifiers:
+				var modifier = Modifiers.new(uniqueModifier)
+				target.modifiers.append(modifier)
+			print(target.modifiers)
+		
+		# reduce duration of modifiers that apply on attack
+		var modifierCounter = 0
+		for uniqueModifiers in character.modifiers:
+			if uniqueModifiers.duration_ability > 0:
+				uniqueModifiers.duration_ability -= 1
+				print(uniqueModifiers.name, " duration reduced to: ", uniqueModifiers.duration_ability)
+				# if the duration has ended, need to remove it from the character's modifier list
+				if uniqueModifiers.duration_ability  == 0 and uniqueModifiers.duration_turn  == 0:
+					character.modifiers.remove_at(modifierCounter)
+					print(uniqueModifiers.name, " modifier has been removed from ", character.name, "'s modifiers")
+			modifierCounter += 1
+		
 		activeCharacter = null
 		activeAbility = null
 		updateResource()
@@ -77,6 +98,14 @@ func executeAbility(character, selectedAbility, target, healthbar):
 		$MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/PlayerPortrait/PlayerTeamResource/AnimationPlayer.play("low_resource")
 		print("Not enough resource to use this ability")
 
+# checks for additional costs based on modifiers
+func getCost(modifiers):
+	var additionalCost = 0
+	# go through each modifier applied to a character
+	for x in modifiers:
+		additionalCost += x.cost
+	return additionalCost
+	
 # Determine what information to show in the Info Panel
 func displayInfo(target):
 	$MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/MainInfoPanel/Label.text = target.description % [target.name, target.damage, target.targets, target.cost, target.cooldown]
@@ -180,7 +209,10 @@ func resetAnimations(node: Node):
 			resetAnimations(child)
 
 func isValidTarget(target):
+	# target passes an array of objects (one team) or an array of arrays (both teams)
 	if target in validTargets:
+		return true
+	elif (target in validTargets[0]) or (target in validTargets[1]):
 		return true
 	else:
 		return false
