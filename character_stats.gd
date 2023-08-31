@@ -8,3 +8,4 @@ class_name CharacterStats
 @export var buffs: Array = []
 @export var debuffs: Array = []
 @export var portrait: Texture = null
+@export var armor: int = 0

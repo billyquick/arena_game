@@ -15,3 +15,4 @@ abilities = [ExtResource("1_1yf6h"), ExtResource("2_0djot"), ExtResource("3_d3qd
 buffs = []
 debuffs = []
 portrait = ExtResource("4_tyvns")
+armor = 0

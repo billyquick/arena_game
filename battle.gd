@@ -9,6 +9,7 @@ var abilityCounter = 0
 var validTargets
 var activeCharacter
 var activeAbility
+# TODO: for each client, need to mirror the screens so I only to need code one side
 var turnTracker: Array
 
 @onready var enemyCharacter1Health = $MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam/EnemyCharacter1/Enemy1Portrait/Healthbar
@@ -295,3 +296,30 @@ func _on_player_portrait_pressed():
 		print(turnTracker)
 	else:
 		pass
+
+func _on_enemy_1_ability_1_pressed():
+	displayInfo(teamManager.opponentTeam[0].abilities[0])
+
+func _on_enemy_1_ability_2_pressed():
+	displayInfo(teamManager.opponentTeam[0].abilities[1])
+
+func _on_enemy_1_ability_3_pressed():
+	displayInfo(teamManager.opponentTeam[0].abilities[2])
+
+func _on_enemy_2_ability_1_pressed():
+	displayInfo(teamManager.opponentTeam[1].abilities[0])
+
+func _on_enemy_2_ability_2_pressed():
+	displayInfo(teamManager.opponentTeam[1].abilities[1])
+
+func _on_enemy_2_ability_3_pressed():
+	displayInfo(teamManager.opponentTeam[1].abilities[2])
+
+func _on_enemy_3_ability_1_pressed():
+	displayInfo(teamManager.opponentTeam[2].abilities[0])
+
+func _on_enemy_3_ability_2_pressed():
+	displayInfo(teamManager.opponentTeam[2].abilities[1])
+
+func _on_enemy_3_ability_3_pressed():
+	displayInfo(teamManager.opponentTeam[2].abilities[2])
