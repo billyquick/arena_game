@@ -98,10 +98,10 @@ func executeAbility(character, selectedAbility, target, healthbar):
 		activeAbility = null
 		updateResource()
 		resetAnimations(bothTeamUI)
-		for x in teamManager.playerTeam:
+		"""for x in teamManager.playerTeam:
 			print("Player character: ", x.charName, x, " with Modifiers: ", x.modifiers)
 		for x in teamManager.opponentTeam:
-			print("Enemy character: ", x.charName, x, " with Modifiers: ", x.modifiers)
+			print("Enemy character: ", x.charName, x, " with Modifiers: ", x.modifiers)"""
 	else:
 		# Flash resource red so it should be obvious why you can't use the ability
 		$MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/PlayerPortrait/PlayerTeamResource/AnimationPlayer.play("low_resource")
@@ -335,7 +335,7 @@ func executePassive(character, ability):
 		var target
 		var random_team = rng.randf_range(0, 1)
 		var healthbar
-		if random_team == 0:
+		if random_team < 0.5:
 			target = teamManager.playerTeam.pick_random()
 			if target == teamManager.playerTeam[0]:
 				healthbar = playerCharacter1Health
@@ -350,13 +350,13 @@ func executePassive(character, ability):
 			target = teamManager.opponentTeam.pick_random()
 			if target == teamManager.opponentTeam[0]:
 				healthbar = enemyCharacter1Health
-				print("picked playerTeam, member 0")
+				print("picked opponentTeam, member 0")
 			elif target == teamManager.opponentTeam[1]:
 				healthbar = enemyCharacter2Health
-				print("picked playerTeam, member 1")
+				print("picked opponentTeam, member 1")
 			else: 
 				healthbar = enemyCharacter3Health
-				print("picked playerTeam, member 2")
+				print("picked opponentTeam, member 2")
 		
 		executeAbility(character, ability, target, healthbar)
 	
