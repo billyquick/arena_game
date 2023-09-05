@@ -1,8 +1,6 @@
 extends Node2D
 class_name Modifiers
 
-const Character = preload("res://characters/characters.gd")
-
 var modName: String
 var max_health: int
 var health: int
@@ -18,7 +16,7 @@ var icon: Texture
 
 # Constructor
 func _init(modifier: Resource):
-	self.name = modifier.name
+	self.modName = modifier.name
 	self.max_health = modifier.max_health
 	self.health = modifier.health
 	self.armor = modifier.armor

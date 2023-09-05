@@ -18,7 +18,7 @@ var icon: Texture
 
 # Constructor
 func _init(ability: Resource):
-	self.name = ability.name
+	self.abilityName = ability.name
 	self.damage = ability.damage
 	self.cost = ability.cost
 	self.description = ability.description

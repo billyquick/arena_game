@@ -238,16 +238,19 @@ libraries = {
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Ability 1"
+text_overrun_behavior = 3
 
 [node name="Char1Ability2" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PlayerTeam/PlayerCharacter1"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Ability 2"
+text_overrun_behavior = 3
 
 [node name="Char1Ability3" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PlayerTeam/PlayerCharacter1"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Ability 3"
+text_overrun_behavior = 3
 
 [node name="BuffDebuffs" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PlayerTeam/PlayerCharacter1"]
 layout_mode = 2
@@ -300,16 +303,19 @@ libraries = {
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Ability 1"
+text_overrun_behavior = 3
 
 [node name="Char2Ability2" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PlayerTeam/PlayerCharacter2"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Ability 2"
+text_overrun_behavior = 3
 
 [node name="Char2Ability3" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PlayerTeam/PlayerCharacter2"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Ability 3"
+text_overrun_behavior = 3
 
 [node name="BuffDebuffs" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PlayerTeam/PlayerCharacter2"]
 layout_mode = 2
@@ -362,16 +368,19 @@ libraries = {
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Ability 1"
+text_overrun_behavior = 3
 
 [node name="Char3Ability2" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PlayerTeam/PlayerCharacter3"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Ability 2"
+text_overrun_behavior = 3
 
 [node name="Char3Ability3" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PlayerTeam/PlayerCharacter3"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Ability 3"
+text_overrun_behavior = 3
 
 [node name="BuffDebuffs" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PlayerTeam/PlayerCharacter3"]
 layout_mode = 2
@@ -429,16 +438,19 @@ libraries = {
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Ability 1"
+text_overrun_behavior = 3
 
 [node name="Enemy1Ability2" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam/EnemyCharacter1"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Ability 2"
+text_overrun_behavior = 3
 
 [node name="Enemy1Ability3" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam/EnemyCharacter1"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Ability 3"
+text_overrun_behavior = 3
 
 [node name="BuffDebuffs" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam/EnemyCharacter1"]
 layout_mode = 2
@@ -492,16 +504,19 @@ libraries = {
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Ability 1"
+text_overrun_behavior = 3
 
 [node name="Enemy2Ability2" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam/EnemyCharacter2"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Ability 2"
+text_overrun_behavior = 3
 
 [node name="Enemy2Ability3" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam/EnemyCharacter2"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Ability 3"
+text_overrun_behavior = 3
 
 [node name="BuffDebuffs" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam/EnemyCharacter2"]
 layout_mode = 2
@@ -555,16 +570,19 @@ libraries = {
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Ability 1"
+text_overrun_behavior = 3
 
 [node name="Enemy3Ability2" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam/EnemyCharacter3"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Ability 2"
+text_overrun_behavior = 3
 
 [node name="Enemy3Ability3" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam/EnemyCharacter3"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Ability 3"
+text_overrun_behavior = 3
 
 [node name="BuffDebuffs" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam/EnemyCharacter3"]
 layout_mode = 2

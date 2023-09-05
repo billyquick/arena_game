@@ -23,7 +23,7 @@ func setupTeams():
 	var playerCharacter1 = Character.new(Goblin)
 	var playerCharacter2 = Character.new(FrostMage)
 	var playerCharacter3 = Character.new(Goblin)
-	var enemyCharacter1 = Character.new(Goblin)
+	var enemyCharacter1 = Character.new(FrostMage)
 	var enemyCharacter2 = Character.new(Goblin)
 	var enemyCharacter3 = Character.new(Goblin)
 	

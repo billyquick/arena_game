@@ -3,6 +3,7 @@ extends TextureRect
 var teamManager: TeamManager
 var playerResource: TeamResource
 var enemyResource: TeamResource
+var rng = RandomNumberGenerator.new()
 
 var characterCounter = 0
 var abilityCounter = 0
@@ -63,19 +64,23 @@ func updateResource():
 	playerTeamResource.text = "Resource: " + str(playerResource.currentResource)
 
 func executeAbility(character, selectedAbility, target, healthbar):
+	var additionalCosts = 0
+	# insulating passives
+	if activeCharacter != null:
+		additionalCosts += getCost(activeCharacter.modifiers)
 	# TODO: change player resource to check whose turn it is
-	if playerResource.consumeResource(selectedAbility.cost, getCost(activeCharacter.modifiers)):
+	if playerResource.consumeResource(selectedAbility.cost, additionalCosts):
 		target.health -= selectedAbility.damage
 		updateHealth(healthbar, target) # TO DO
-		print(character.name, " used ", selectedAbility.name, " on ", target.name, ". ", target.name, "'s health is now ", target.health)
+		print(character.charName, " used ", selectedAbility.name, " on ", target.charName, ". ", target.charName, "'s health is now ", target.health)
 		# apply modifiers
 		if selectedAbility.applies_modifier:
 			# for each modifier the ability applies, create a new one and apply it to the target
-			# TODO: if target already has an instance  theof modifier, should extend rather than create a new one
+			# TODO: if target already has an instance of the modifier, should extend rather than create a new one
 			for uniqueModifier in selectedAbility.modifiers:
 				var modifier = Modifiers.new(uniqueModifier)
-				target.modifiers.append(modifier)
-			print(target.modifiers)
+				target.add_modifier(modifier)
+				print("Applying modifier ", modifier.modName, modifier, " to target ", target.charName, target)
 		
 		# reduce duration of modifiers that apply on attack
 		var modifierCounter = 0
@@ -86,13 +91,17 @@ func executeAbility(character, selectedAbility, target, healthbar):
 				# if the duration has ended, need to remove it from the character's modifier list
 				if uniqueModifiers.duration_ability  == 0 and uniqueModifiers.duration_turn  == 0:
 					character.modifiers.remove_at(modifierCounter)
-					print(uniqueModifiers.name, " modifier has been removed from ", character.name, "'s modifiers")
+					print(uniqueModifiers.name, " modifier has been removed from ", character.charName, "'s modifiers")
 			modifierCounter += 1
 		
 		activeCharacter = null
 		activeAbility = null
 		updateResource()
 		resetAnimations(bothTeamUI)
+		for x in teamManager.playerTeam:
+			print("Player character: ", x.charName, x, " with Modifiers: ", x.modifiers)
+		for x in teamManager.opponentTeam:
+			print("Enemy character: ", x.charName, x, " with Modifiers: ", x.modifiers)
 	else:
 		# Flash resource red so it should be obvious why you can't use the ability
 		$MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/PlayerPortrait/PlayerTeamResource/AnimationPlayer.play("low_resource")
@@ -212,8 +221,9 @@ func isValidTarget(target):
 	# target passes an array of objects (one team) or an array of arrays (both teams)
 	if target in validTargets:
 		return true
-	elif (target in validTargets[0]) or (target in validTargets[1]):
-		return true
+	elif validTargets.size() == 2:
+		if (target in validTargets[0]) or (target in validTargets[1]):
+			return true
 	else:
 		return false
 	
@@ -320,15 +330,54 @@ func _on_enemy_3_portrait_pressed():
 	else:
 		print("No active character")
 
+func executePassive(character, ability):
+	if ability.targets_random:
+		var target
+		var random_team = rng.randf_range(0, 1)
+		var healthbar
+		if random_team == 0:
+			target = teamManager.playerTeam.pick_random()
+			if target == teamManager.playerTeam[0]:
+				healthbar = playerCharacter1Health
+				print("picked playerTeam, member 0")
+			elif target == teamManager.playerTeam[1]:
+				healthbar = playerCharacter2Health
+				print("picked playerTeam, member 1")
+			else: 
+				healthbar = playerCharacter3Health
+				print("picked playerTeam, member 2")
+		else: 
+			target = teamManager.opponentTeam.pick_random()
+			if target == teamManager.opponentTeam[0]:
+				healthbar = enemyCharacter1Health
+				print("picked playerTeam, member 0")
+			elif target == teamManager.opponentTeam[1]:
+				healthbar = enemyCharacter2Health
+				print("picked playerTeam, member 1")
+			else: 
+				healthbar = enemyCharacter3Health
+				print("picked playerTeam, member 2")
+		
+		executeAbility(character, ability, target, healthbar)
+	
 # What to do when the turn ends
 func _on_player_portrait_pressed():
-	# if it's the player's turn, make it the enemy's turn
+	# process passives that trigger end of turn
 	if turnTracker.back() == "playerTurn":
+		# clear actives if the turn is ending
+		activeAbility = null
+		activeCharacter = null
+		for characters in teamManager.playerTeam:
+			for ability in characters.abilities:
+				# using -1 as a way to indicate a passive triggers EOT
+				if ability.is_passive and ability.cooldown == -1:
+					executePassive(characters, ability)
+		# if it's the player's turn, make it the enemy's turn
 		turnTracker.append("enemyTurn")
 		print(turnTracker)
-	else:
+	else: 
 		pass
-
+	
 func _on_enemy_1_ability_1_pressed():
 	displayInfo(teamManager.opponentTeam[0].abilities[0])
 
