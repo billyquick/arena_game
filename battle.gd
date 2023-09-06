@@ -39,10 +39,10 @@ func _ready():
 	enemyTeamResource.text = "Resource: " + str(enemyResource.currentResource) # assigns enemy resource
 	
 	for character in teamManager.playerTeam:
-		print("Player character: ", character, " with Abilities: ", character.abilities)
+		print("Player character: ", character.charName, character, " with Abilities: ", character.abilities)
 
 	for character in teamManager.opponentTeam:
-		print("Opponent character: ", character, " with Abilities: ", character.abilities)
+		print("Opponent character: ", character.charName, character, " with Abilities: ", character.abilities)
 		
 	updateTeamUI(playerTeamUI, teamManager.playerTeam)
 	updateTeamUI(enemyTeamUI, teamManager.opponentTeam)
@@ -82,7 +82,7 @@ func executeAbility(character, selectedAbility, target, healthbar):
 				target.add_modifier(modifier)
 				print("Applying modifier ", modifier.modName, modifier, " to target ", target.charName, target)
 		
-		# reduce duration of modifiers that apply on attack
+		# reduce duration of modifiers that apply on ability use
 		var modifierCounter = 0
 		for uniqueModifiers in character.modifiers:
 			if uniqueModifiers.duration_ability > 0:
@@ -98,10 +98,10 @@ func executeAbility(character, selectedAbility, target, healthbar):
 		activeAbility = null
 		updateResource()
 		resetAnimations(bothTeamUI)
-		"""for x in teamManager.playerTeam:
-			print("Player character: ", x.charName, x, " with Modifiers: ", x.modifiers)
+		for x in teamManager.playerTeam:
+			print("Player character: ", x.charName, x, " with health: ", x.health, " with Modifiers: ", x.modifiers)
 		for x in teamManager.opponentTeam:
-			print("Enemy character: ", x.charName, x, " with Modifiers: ", x.modifiers)"""
+			print("Enemy character: ", x.charName, x, " with health: ", x.health, " with Modifiers: ", x.modifiers)
 	else:
 		# Flash resource red so it should be obvious why you can't use the ability
 		$MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/PlayerPortrait/PlayerTeamResource/AnimationPlayer.play("low_resource")
@@ -117,7 +117,7 @@ func getCost(modifiers):
 	
 # Determine what information to show in the Info Panel
 func displayInfo(target):
-	$MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/MainInfoPanel/Label.text = target.description % [target.name, target.damage, target.targets, target.cost, target.cooldown]
+	$MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/MainInfoPanel/Label.text = target.description % [target.abilityName, target.damage, target.targets, target.cost, target.cooldown]
 
 # Update health bars as the game begins
 func updateHealth(health_bar, Character):
@@ -132,7 +132,7 @@ func assignCharacter(char_portrait, Character):
 	
 # assign UI to Ability buttons
 func assignAbilities(char_ability, Character):
-	char_ability.text = Character.abilities[abilityCounter].name
+	char_ability.text = Character.abilities[abilityCounter].abilityName
 	if Character.abilities[abilityCounter].is_passive == true:
 		char_ability.flat = true
 	
@@ -240,22 +240,21 @@ func _on_char_1_ability_1_pressed():
 	# assign active Character to the character's ability we selected
 	activeCharacter = teamManager.playerTeam[0]
 	activeAbility = teamManager.playerTeam[0].abilities[0]
-	
-	print(teamManager.playerTeam[0].abilities[0].name, " can target: ", validTargets)
+	print(teamManager.playerTeam[0].abilities[0].abilityName, " can target: ", validTargets)
 
 func _on_char_1_ability_2_pressed():
 	displayInfo(teamManager.playerTeam[0].abilities[1])
 	validTargets = getValidTargets(teamManager.playerTeam[0].abilities[1])
 	activeCharacter = teamManager.playerTeam[0]
 	activeAbility = teamManager.playerTeam[0].abilities[1]
-	print(teamManager.playerTeam[0].abilities[1].name, " can target: ", validTargets)
+	print(teamManager.playerTeam[0].abilities[1].abilityName, " can target: ", validTargets)
 
 func _on_char_1_ability_3_pressed():
 	displayInfo(teamManager.playerTeam[0].abilities[2])
 	validTargets = getValidTargets(teamManager.playerTeam[0].abilities[2])
 	activeCharacter = teamManager.playerTeam[0]
 	activeAbility = teamManager.playerTeam[0].abilities[2]
-	print(teamManager.playerTeam[0].abilities[2].name, " can target: ", validTargets)
+	print(teamManager.playerTeam[0].abilities[2].abilityName, " can target: ", validTargets)
 	
 func _on_char_2_portrait_pressed():
 	if activeCharacter != null and isValidTarget(teamManager.playerTeam[1]):
@@ -268,21 +267,21 @@ func _on_char_2_ability_1_pressed():
 	validTargets = getValidTargets(teamManager.playerTeam[1].abilities[0])
 	activeCharacter = teamManager.playerTeam[1]
 	activeAbility = teamManager.playerTeam[1].abilities[0]
-	print(teamManager.playerTeam[1].abilities[0].name, " can target: ", validTargets)
+	print(teamManager.playerTeam[1].abilities[0].abilityName, " can target: ", validTargets)
 
 func _on_char_2_ability_2_pressed():
 	displayInfo(teamManager.playerTeam[1].abilities[1])
 	validTargets = getValidTargets(teamManager.playerTeam[1].abilities[1])
 	activeCharacter = teamManager.playerTeam[1]
 	activeAbility = teamManager.playerTeam[1].abilities[1]
-	print(teamManager.playerTeam[1].abilities[1].name, " can target: ", validTargets)
+	print(teamManager.playerTeam[1].abilities[1].abilityName, " can target: ", validTargets)
 	
 func _on_char_2_ability_3_pressed():
 	displayInfo(teamManager.playerTeam[1].abilities[2])
 	validTargets = getValidTargets(teamManager.playerTeam[1].abilities[2])
 	activeCharacter = teamManager.playerTeam[1]
 	activeAbility = teamManager.playerTeam[1].abilities[2]
-	print(teamManager.playerTeam[1].abilities[2].name, " can target: ", validTargets)
+	print(teamManager.playerTeam[1].abilities[2].abilityName, " can target: ", validTargets)
 		
 func _on_char_3_portrait_pressed():
 	if activeCharacter != null and isValidTarget(teamManager.playerTeam[2]):
@@ -295,21 +294,21 @@ func _on_char_3_ability_1_pressed():
 	validTargets = getValidTargets(teamManager.playerTeam[2].abilities[0])
 	activeCharacter = teamManager.playerTeam[2]
 	activeAbility = teamManager.playerTeam[2].abilities[0]
-	print(teamManager.playerTeam[2].abilities[0].name, " can target: ", validTargets)
+	print(teamManager.playerTeam[2].abilities[0].abilityName, " can target: ", validTargets)
 	
 func _on_char_3_ability_2_pressed():
 	displayInfo(teamManager.playerTeam[2].abilities[1])
 	validTargets = getValidTargets(teamManager.playerTeam[2].abilities[1])
 	activeCharacter = teamManager.playerTeam[2]
 	activeAbility = teamManager.playerTeam[2].abilities[1]
-	print(teamManager.playerTeam[2].abilities[1].name, " can target: ", validTargets)
+	print(teamManager.playerTeam[2].abilities[1].abilityName, " can target: ", validTargets)
 
 func _on_char_3_ability_3_pressed():
 	displayInfo(teamManager.playerTeam[1].abilities[2])
 	validTargets = getValidTargets(teamManager.playerTeam[1].abilities[2])
 	activeCharacter = teamManager.playerTeam[1]
 	activeAbility = teamManager.playerTeam[1].abilities[2]
-	print(teamManager.playerTeam[1].abilities[2].name, " can target: ", validTargets)
+	print(teamManager.playerTeam[2].abilities[2].abilityName, " can target: ", validTargets)
 
 ## ENEMY
 func _on_enemy_portrait_1_pressed():
