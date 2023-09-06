@@ -72,7 +72,7 @@ func executeAbility(character, selectedAbility, target, healthbar):
 	if playerResource.consumeResource(selectedAbility.cost, additionalCosts):
 		target.health -= selectedAbility.damage
 		updateHealth(healthbar, target) # TO DO
-		print(character.charName, " used ", selectedAbility.name, " on ", target.charName, ". ", target.charName, "'s health is now ", target.health)
+		print(character.charName, " used ", selectedAbility.abilityName, " on ", target.charName, ". ", target.charName, "'s health is now ", target.health)
 		# apply modifiers
 		if selectedAbility.applies_modifier:
 			# for each modifier the ability applies, create a new one and apply it to the target
