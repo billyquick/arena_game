@@ -64,8 +64,8 @@ func updateResource():
 	playerTeamResource.text = "Resource: " + str(playerResource.currentResource)
 
 func executeAbility(character, selectedAbility, target, healthbar):
-	var additionalCosts = 0
 	# insulating passives
+	var additionalCosts = 0
 	if activeCharacter != null:
 		additionalCosts += getCost(activeCharacter.modifiers)
 	# TODO: change player resource to check whose turn it is
@@ -76,10 +76,19 @@ func executeAbility(character, selectedAbility, target, healthbar):
 		# apply modifiers
 		if selectedAbility.applies_modifier:
 			# for each modifier the ability applies, create a new one and apply it to the target
-			# TODO: if target already has an instance of the modifier, should extend rather than create a new one
 			for uniqueModifier in selectedAbility.modifiers:
 				var modifier = Modifiers.new(uniqueModifier)
-				target.add_modifier(modifier)
+				if !target.modifiers.is_empty():
+					for modifiers in target.modifiers:
+						if modifiers.modName == modifier.modName:
+							print("Found existing modifier. Incrementing duration of ", modifier.modName)
+							modifiers.duration_ability += modifier.duration_ability
+							modifiers.duration_turn += modifier.duration_turn
+							print("Modifier ", modifiers.modName, " now has a duration_ability of ", modifiers.duration_ability)
+						else: 
+							target.add_modifier(modifier)
+				else: 
+					target.add_modifier(modifier)
 				print("Applying modifier ", modifier.modName, modifier, " to target ", target.charName, target)
 		
 		# reduce duration of modifiers that apply on ability use
@@ -94,10 +103,13 @@ func executeAbility(character, selectedAbility, target, healthbar):
 					print(uniqueModifiers.name, " modifier has been removed from ", character.charName, "'s modifiers")
 			modifierCounter += 1
 		
+		# wrap up
 		activeCharacter = null
 		activeAbility = null
 		updateResource()
 		resetAnimations(bothTeamUI)
+		
+		# debug
 		for x in teamManager.playerTeam:
 			print("Player character: ", x.charName, x, " with health: ", x.health, " with Modifiers: ", x.modifiers)
 		for x in teamManager.opponentTeam:
