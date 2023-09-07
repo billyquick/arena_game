@@ -63,33 +63,51 @@ func updateResource():
 	#TODO: check whose turn it is 
 	playerTeamResource.text = "Resource: " + str(playerResource.currentResource)
 
-func executeAbility(character, selectedAbility, target, healthbar):
+func executeAbility(character, selectedAbility, target):
 	# insulating passives
 	var additionalCosts = 0
 	if activeCharacter != null:
 		additionalCosts += getCost(activeCharacter.modifiers)
 	# TODO: change player resource to check whose turn it is
 	if playerResource.consumeResource(selectedAbility.cost, additionalCosts):
-		target.health -= selectedAbility.damage
-		updateHealth(healthbar, target) # TO DO
-		print(character.charName, " used ", selectedAbility.abilityName, " on ", target.charName, ". ", target.charName, "'s health is now ", target.health)
+		if target is Array:
+			for enemy in target:
+				enemy.health -= selectedAbility.damage
+				print(character.charName, " used ", selectedAbility.abilityName, " on ", enemy.charName, ". ", enemy.charName, "'s health is now ", enemy.health)
+		else:
+			target.health -= selectedAbility.damage
+			print(character.charName, " used ", selectedAbility.abilityName, " on ", target.charName, ". ", target.charName, "'s health is now ", target.health)
 		# apply modifiers
 		if selectedAbility.applies_modifier:
 			# for each modifier the ability applies, create a new one and apply it to the target
 			for uniqueModifier in selectedAbility.modifiers:
 				var modifier = Modifiers.new(uniqueModifier)
-				if !target.modifiers.is_empty():
-					for modifiers in target.modifiers:
-						if modifiers.modName == modifier.modName:
-							print("Found existing modifier. Incrementing duration of ", modifier.modName)
-							modifiers.duration_ability += modifier.duration_ability
-							modifiers.duration_turn += modifier.duration_turn
-							print("Modifier ", modifiers.modName, " now has a duration_ability of ", modifiers.duration_ability)
+				# increase existing modifiers duration, rather than having multiple modifiers of the same type
+				if target is Array:
+					for enemy in target:
+						if !enemy.modifiers.is_empty():
+							for modifiers in enemy.modifiers:
+								if modifiers.modName == modifier.modName:
+									print("Found existing modifier. Incrementing duration of ", modifier.modName)
+									modifiers.duration_ability += modifier.duration_ability
+									modifiers.duration_turn += modifier.duration_turn
+								else: 
+									enemy.add_modifier(modifier)
 						else: 
-							target.add_modifier(modifier)
-				else: 
-					target.add_modifier(modifier)
-				print("Applying modifier ", modifier.modName, modifier, " to target ", target.charName, target)
+							enemy.add_modifier(modifier)
+						print("Applying modifier ", modifier.modName, modifier, " to target ", enemy.charName, enemy)
+				else:
+					if !target.modifiers.is_empty():
+						for modifiers in target.modifiers:
+							if modifiers.modName == modifier.modName:
+								print("Found existing modifier. Incrementing duration of ", modifier.modName)
+								modifiers.duration_ability += modifier.duration_ability
+								modifiers.duration_turn += modifier.duration_turn
+							else: 
+								target.add_modifier(modifier)
+					else: 
+						target.add_modifier(modifier)
+					print("Applying modifier ", modifier.modName, modifier, " to target ", target.charName, target)
 		
 		# reduce duration of modifiers that apply on ability use
 		var modifierCounter = 0
@@ -108,6 +126,8 @@ func executeAbility(character, selectedAbility, target, healthbar):
 		activeAbility = null
 		updateResource()
 		resetAnimations(bothTeamUI)
+		updateTeamUI(playerTeamUI, teamManager.playerTeam)
+		updateTeamUI(enemyTeamUI, teamManager.opponentTeam)
 		
 		# debug
 		for x in teamManager.playerTeam:
@@ -241,7 +261,10 @@ func isValidTarget(target):
 	
 func _on_char_1_portrait_pressed():
 	if activeCharacter != null and isValidTarget(teamManager.playerTeam[0]):
-		executeAbility(activeCharacter, activeAbility, teamManager.playerTeam[0], playerCharacter1Health)
+		if activeAbility.targets == 3:
+			executeAbility(activeCharacter, activeAbility, teamManager.playerTeam)
+		else:
+			executeAbility(activeCharacter, activeAbility, teamManager.playerTeam[0])
 	else:
 		print("No active character or invalid target!")
 		
@@ -270,7 +293,10 @@ func _on_char_1_ability_3_pressed():
 	
 func _on_char_2_portrait_pressed():
 	if activeCharacter != null and isValidTarget(teamManager.playerTeam[1]):
-		executeAbility(activeCharacter, activeAbility, teamManager.playerTeam[1], playerCharacter2Health)
+		if activeAbility.targets == 3:
+			executeAbility(activeCharacter, activeAbility, teamManager.playerTeam)
+		else:
+			executeAbility(activeCharacter, activeAbility, teamManager.playerTeam[1])
 	else:
 		print("No active character or invalid target!")
 		
@@ -297,7 +323,10 @@ func _on_char_2_ability_3_pressed():
 		
 func _on_char_3_portrait_pressed():
 	if activeCharacter != null and isValidTarget(teamManager.playerTeam[2]):
-		executeAbility(activeCharacter, activeAbility, teamManager.playerTeam[2], playerCharacter3Health)
+		if activeAbility.targets == 3:
+			executeAbility(activeCharacter, activeAbility, teamManager.playerTeam)
+		else:
+			executeAbility(activeCharacter, activeAbility, teamManager.playerTeam[2])
 	else:
 		print("No active character or invalid target!")
 		
@@ -325,19 +354,28 @@ func _on_char_3_ability_3_pressed():
 ## ENEMY
 func _on_enemy_portrait_1_pressed():
 	if activeCharacter != null and isValidTarget(teamManager.opponentTeam[0]):
-		executeAbility(activeCharacter, activeAbility, teamManager.opponentTeam[0], enemyCharacter1Health)
+		if activeAbility.targets == 3:
+			executeAbility(activeCharacter, activeAbility, teamManager.opponentTeam)
+		else: 
+			executeAbility(activeCharacter, activeAbility, teamManager.opponentTeam[0])
 	else:
 		print("No active character")
 
 func _on_enemy_2_portrait_pressed():
 	if activeCharacter != null and isValidTarget(teamManager.opponentTeam[1]):
-		executeAbility(activeCharacter, activeAbility, teamManager.opponentTeam[1], enemyCharacter2Health)
+		if activeAbility.targets == 3:
+			executeAbility(activeCharacter, activeAbility, teamManager.opponentTeam)
+		else:
+			executeAbility(activeCharacter, activeAbility, teamManager.opponentTeam[1])
 	else:
 		print("No active character")
 
 func _on_enemy_3_portrait_pressed():
 	if activeCharacter != null and isValidTarget(teamManager.opponentTeam[2]):
-		executeAbility(activeCharacter, activeAbility, teamManager.opponentTeam[2], enemyCharacter3Health)
+		if activeAbility.targets == 3:
+			executeAbility(activeCharacter, activeAbility, teamManager.opponentTeam)
+		else:
+			executeAbility(activeCharacter, activeAbility, teamManager.opponentTeam[2])
 	else:
 		print("No active character")
 
@@ -369,7 +407,7 @@ func executePassive(character, ability):
 				healthbar = enemyCharacter3Health
 				print("picked opponentTeam, member 2")
 		
-		executeAbility(character, ability, target, healthbar)
+		executeAbility(character, ability, target)
 	
 # What to do when the turn ends
 func _on_player_portrait_pressed():
