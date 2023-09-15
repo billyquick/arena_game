@@ -10,6 +10,7 @@ var targets: int
 var cooldown: int
 var attack_hits: int
 var targets_friendly: bool
+var targets_self: bool
 var targets_enemy: bool
 var targets_random: bool
 var is_passive: bool 
@@ -28,6 +29,7 @@ func _init(ability: Resource):
 	self.cooldown = ability.cooldown
 	self.attack_hits = ability.attack_hits
 	self.targets_friendly = ability.targets_friendly
+	self.targets_self = ability.targets_self
 	self.targets_enemy = ability.targets_enemy
 	self.targets_random = ability.targets_random
 	self.is_passive = ability.is_passive

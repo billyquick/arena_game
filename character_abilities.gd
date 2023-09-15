@@ -9,6 +9,7 @@ class_name CharacterAbilities
 @export var damage: int = 0
 @export var attack_hits: int = 1
 @export var targets_friendly: bool = false
+@export var targets_self: bool = false
 @export var targets_enemy: bool = true
 @export var targets_random: bool = false
 @export var is_passive: bool = false

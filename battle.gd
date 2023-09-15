@@ -66,7 +66,7 @@ func updateResource():
 func executeAbility(character, selectedAbility, target):
 	# insulating passives
 	var additionalCosts = 0
-	if activeCharacter != null:
+	if activeCharacter != null and !selectedAbility.is_passive:
 		additionalCosts += getCost(activeCharacter.modifiers)
 	# TODO: change player resource to check whose turn it is
 	if playerResource.consumeResource(selectedAbility.cost, additionalCosts):
@@ -123,6 +123,10 @@ func executeAbility(character, selectedAbility, target):
 		
 		# wrap up
 		activeCharacter = null
+		# Current design philosophy is 1 ability use a turn, per ability per character
+		if activeAbility != null:
+			activeAbility.is_useable = !activeAbility.is_useable
+			print(activeAbility.abilityName, " is useable? ", activeAbility.is_useable)
 		activeAbility = null
 		updateResource()
 		resetAnimations(bothTeamUI)
@@ -260,7 +264,7 @@ func isValidTarget(target):
 		return false
 	
 func _on_char_1_portrait_pressed():
-	if activeCharacter != null and isValidTarget(teamManager.playerTeam[0]):
+	if activeCharacter != null and isValidTarget(teamManager.playerTeam[0]) and activeAbility.is_useable:
 		if activeAbility.targets == 3:
 			executeAbility(activeCharacter, activeAbility, teamManager.playerTeam)
 		else:
@@ -292,7 +296,7 @@ func _on_char_1_ability_3_pressed():
 	print(teamManager.playerTeam[0].abilities[2].abilityName, " can target: ", validTargets)
 	
 func _on_char_2_portrait_pressed():
-	if activeCharacter != null and isValidTarget(teamManager.playerTeam[1]):
+	if activeCharacter != null and isValidTarget(teamManager.playerTeam[1]) and activeAbility.is_useable:
 		if activeAbility.targets == 3:
 			executeAbility(activeCharacter, activeAbility, teamManager.playerTeam)
 		else:
@@ -322,7 +326,7 @@ func _on_char_2_ability_3_pressed():
 	print(teamManager.playerTeam[1].abilities[2].abilityName, " can target: ", validTargets)
 		
 func _on_char_3_portrait_pressed():
-	if activeCharacter != null and isValidTarget(teamManager.playerTeam[2]):
+	if activeCharacter != null and isValidTarget(teamManager.playerTeam[2]) and activeAbility.is_useable:
 		if activeAbility.targets == 3:
 			executeAbility(activeCharacter, activeAbility, teamManager.playerTeam)
 		else:
@@ -353,7 +357,7 @@ func _on_char_3_ability_3_pressed():
 
 ## ENEMY
 func _on_enemy_portrait_1_pressed():
-	if activeCharacter != null and isValidTarget(teamManager.opponentTeam[0]):
+	if activeCharacter != null and isValidTarget(teamManager.opponentTeam[0]) and activeAbility.is_useable:
 		if activeAbility.targets == 3:
 			executeAbility(activeCharacter, activeAbility, teamManager.opponentTeam)
 		else: 
@@ -362,7 +366,7 @@ func _on_enemy_portrait_1_pressed():
 		print("No active character")
 
 func _on_enemy_2_portrait_pressed():
-	if activeCharacter != null and isValidTarget(teamManager.opponentTeam[1]):
+	if activeCharacter != null and isValidTarget(teamManager.opponentTeam[1]) and activeAbility.is_useable:
 		if activeAbility.targets == 3:
 			executeAbility(activeCharacter, activeAbility, teamManager.opponentTeam)
 		else:
@@ -371,7 +375,7 @@ func _on_enemy_2_portrait_pressed():
 		print("No active character")
 
 func _on_enemy_3_portrait_pressed():
-	if activeCharacter != null and isValidTarget(teamManager.opponentTeam[2]):
+	if activeCharacter != null and isValidTarget(teamManager.opponentTeam[2]) and activeAbility.is_useable:
 		if activeAbility.targets == 3:
 			executeAbility(activeCharacter, activeAbility, teamManager.opponentTeam)
 		else:
@@ -416,11 +420,15 @@ func _on_player_portrait_pressed():
 		# clear actives if the turn is ending
 		activeAbility = null
 		activeCharacter = null
+		# proc passives that happen End of Turn
 		for characters in teamManager.playerTeam:
 			for ability in characters.abilities:
 				# using -1 as a way to indicate a passive triggers EOT
 				if ability.is_passive and ability.cooldown == -1:
 					executePassive(characters, ability)
+				if ability.cooldown == 0:
+					ability.is_useable == true
+					print("setting ", ability.abilityName, " to useable")
 		# if it's the player's turn, make it the enemy's turn
 		turnTracker.append("enemyTurn")
 		print(turnTracker)

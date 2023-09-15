@@ -1,12 +1,15 @@
-[gd_resource type="Resource" script_class="CharacterStats" load_steps=2 format=3 uid="uid://c2ttgwusk2s0s"]
+[gd_resource type="Resource" script_class="CharacterStats" load_steps=5 format=3 uid="uid://c2ttgwusk2s0s"]
 
 [ext_resource type="Script" path="res://character_stats.gd" id="1_3u6eh"]
+[ext_resource type="Resource" uid="uid://bms2qyyyxpjon" path="res://characters/swarm/sting.tres" id="1_trse1"]
+[ext_resource type="Resource" uid="uid://s0gp6hasgxpu" path="res://characters/swarm/return_to_hive.tres" id="2_encec"]
+[ext_resource type="Resource" uid="uid://b4g8nbl4v1mmn" path="res://characters/swarm/hive_mind.tres" id="3_cbq83"]
 
 [resource]
 script = ExtResource("1_3u6eh")
 name = "Swarm"
 max_health = 1000
 health = 1000
-abilities = []
-buffs = []
-debuffs = []
+abilities = [ExtResource("1_trse1"), ExtResource("2_encec"), ExtResource("3_cbq83")]
+modifiers = []
+armor = 0

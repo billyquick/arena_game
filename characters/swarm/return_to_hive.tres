@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="CharacterAbilities" load_steps=2 format=3 uid="uid://s0gp6hasgxpu"]
+
+[ext_resource type="Script" path="res://character_abilities.gd" id="1_laf6n"]
+
+[resource]
+script = ExtResource("1_laf6n")
+name = "Return to Hive"
+description = "%s deals %d damage to %d target(s). Costs %d resource and has a cooldown of %d turns."
+cost = 10
+targets = 3
+cooldown = 0
+damage = -50
+attack_hits = 1
+targets_friendly = true
+targets_self = true
+targets_enemy = true
+targets_random = false
+is_passive = false
+is_useable = true
+applies_modifier = false
+modifiers = []
