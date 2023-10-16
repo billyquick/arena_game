@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="CharacterAbilities" load_steps=3 format=3 uid="uid://bn4ml6y3rgga6"]
+
+[ext_resource type="Script" path="res://character_abilities.gd" id="1_th31t"]
+[ext_resource type="Resource" uid="uid://cy7f5n2j2juef" path="res://characters/samurai/impaled_modifier.tres" id="1_tppmo"]
+
+[resource]
+script = ExtResource("1_th31t")
+name = "Impale"
+description = "%s deals %d damage to %d target(s). Costs %d resource and has a cooldown of %d turns."
+cost = 0
+targets = 1
+cooldown = 3
+damage = 40
+attack_hits = 1
+targets_friendly = false
+targets_self = false
+targets_enemy = true
+targets_random = false
+is_passive = false
+is_useable = true
+applies_modifier = false
+modifiers = [ExtResource("1_tppmo")]

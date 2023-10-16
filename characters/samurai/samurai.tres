@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="CharacterStats" load_steps=2 format=3 uid="uid://c8ws4oo7fhsiw"]
+
+[ext_resource type="Script" path="res://character_stats.gd" id="1_04jgn"]
+
+[resource]
+script = ExtResource("1_04jgn")
+name = "Samurai"
+max_health = 1100
+health = 1100
+abilities = [null, null, null]
+modifiers = []
+armor = 0

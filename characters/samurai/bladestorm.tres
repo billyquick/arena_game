@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="CharacterAbilities" load_steps=2 format=3 uid="uid://bk713j0p4pijr"]
+
+[ext_resource type="Script" path="res://character_abilities.gd" id="1_x1gau"]
+
+[resource]
+script = ExtResource("1_x1gau")
+name = "Bladestorm"
+description = "%s deals %d damage to %d target(s). Costs %d resource and has a cooldown of %d turns."
+cost = 30
+targets = 3
+cooldown = 0
+damage = 50
+attack_hits = 1
+targets_friendly = false
+targets_self = false
+targets_enemy = true
+targets_random = false
+is_passive = true
+is_useable = true
+applies_modifier = false
+modifiers = []
