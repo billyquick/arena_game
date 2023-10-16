@@ -132,6 +132,7 @@ func executeAbility(character, selectedAbility, target):
 		resetAnimations(bothTeamUI)
 		updateTeamUI(playerTeamUI, teamManager.playerTeam)
 		updateTeamUI(enemyTeamUI, teamManager.opponentTeam)
+		checkTeamStatus()
 		
 		# debug
 		for x in teamManager.playerTeam:
@@ -252,6 +253,32 @@ func resetAnimations(node: Node):
 		
 		if child.get_child_count() > 0:
 			resetAnimations(child)
+			
+func checkTeamStatus():
+	for character in teamManager.playerTeam:
+		if character.health <= 0:
+			killCharacter(character)
+			
+	for character in teamManager.opponentTeam:
+		if character.health <= 0:
+			killCharacter(character)
+	
+func killCharacter(character):
+	character.is_dead = true
+	
+	if teamManager.playerTeam[0] == character:
+		$MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PlayerTeam/PlayerCharacter1/Char1Portrait/AnimationPlayer.play("kill_character")
+	if teamManager.playerTeam[1] == character:
+		$MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PlayerTeam/PlayerCharacter2/Char2Portrait/AnimationPlayer.play("kill_character")
+	if teamManager.playerTeam[2] == character:
+		$MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PlayerTeam/PlayerCharacter3/Char3Portrait/AnimationPlayer.play("kill_character")
+		
+	if teamManager.opponentTeam[0] == character:
+		$MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam/EnemyCharacter1/Enemy1Portrait/AnimationPlayer.play("kill_character")
+	if teamManager.opponentTeam[1] == character:
+		$MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam/EnemyCharacter2/Enemy2Portrait/AnimationPlayer.play("kill_character")
+	if teamManager.opponentTeam[2] == character:
+		$MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EnemyTeam/EnemyCharacter3/Enemy3Portrait/AnimationPlayer.play("kill_character")
 
 func isValidTarget(target):
 	# target passes an array of objects (one team) or an array of arrays (both teams)

@@ -11,6 +11,7 @@ script = ExtResource("1_do4lu")
 name = "Goblin"
 max_health = 900
 health = 900
+is_dead = false
 abilities = [ExtResource("1_1yf6h"), ExtResource("2_0djot"), ExtResource("3_d3qdv")]
 modifiers = []
 portrait = ExtResource("4_tyvns")
